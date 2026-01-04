@@ -1,0 +1,531 @@
+[
+  {
+    "id": "team-001",
+    "name": "Duo Maut",
+    "captain": {
+      "id": "u001",
+      "name": "Andi Wijaya",
+      "phone": "6281234567890",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u002",
+      "name": "Budi Santoso",
+      "phone": "6281234567891",
+      "avatarUrl": null
+    },
+    "mmr": 1450,
+    "tier": "MYTHIC",
+    "rank": 1,
+    "isOpenSparring": true,
+    "winStreak": 5,
+    "badges": ["ON_FIRE", "GIANT_SLAYER"],
+    "createdAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "team-002",
+    "name": "Padel Bros",
+    "captain": {
+      "id": "u003",
+      "name": "Charlie Tan",
+      "phone": "6281234567892",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u004",
+      "name": "David Lee",
+      "phone": "6281234567893",
+      "avatarUrl": null
+    },
+    "mmr": 1380,
+    "tier": "MYTHIC",
+    "rank": 2,
+    "isOpenSparring": false,
+    "winStreak": 2,
+    "badges": ["MARATHON"],
+    "createdAt": "2024-01-02T00:00:00Z"
+  },
+  {
+    "id": "team-003",
+    "name": "Smash Kings",
+    "captain": {
+      "id": "u005",
+      "name": "Erik Suharto",
+      "phone": "6281234567894",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u006",
+      "name": "Felix Gunawan",
+      "phone": "6281234567895",
+      "avatarUrl": null
+    },
+    "mmr": 1350,
+    "tier": "MYTHIC",
+    "rank": 3,
+    "isOpenSparring": true,
+    "winStreak": 0,
+    "badges": ["NIGHT_OWL"],
+    "createdAt": "2024-01-03T00:00:00Z"
+  },
+  {
+    "id": "team-004",
+    "name": "Court Crushers",
+    "captain": {
+      "id": "u007",
+      "name": "Gerry Hartono",
+      "phone": "6281234567896",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u008",
+      "name": "Hans Wijaya",
+      "phone": "6281234567897",
+      "avatarUrl": null
+    },
+    "mmr": 1320,
+    "tier": "MYTHIC",
+    "rank": 4,
+    "isOpenSparring": false,
+    "winStreak": 1,
+    "badges": [],
+    "createdAt": "2024-01-04T00:00:00Z"
+  },
+  {
+    "id": "team-005",
+    "name": "Net Masters",
+    "captain": {
+      "id": "u009",
+      "name": "Ivan Susanto",
+      "phone": "6281234567898",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u010",
+      "name": "Joko Widodo",
+      "phone": "6281234567899",
+      "avatarUrl": null
+    },
+    "mmr": 1290,
+    "tier": "MYTHIC",
+    "rank": 5,
+    "isOpenSparring": true,
+    "winStreak": 3,
+    "badges": ["ON_FIRE"],
+    "createdAt": "2024-01-05T00:00:00Z"
+  },
+  {
+    "id": "team-006",
+    "name": "Power Duo",
+    "captain": {
+      "id": "u011",
+      "name": "Kevin Lim",
+      "phone": "6281234567800",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u012",
+      "name": "Leo Tanaka",
+      "phone": "6281234567801",
+      "avatarUrl": null
+    },
+    "mmr": 1260,
+    "tier": "MYTHIC",
+    "rank": 6,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": ["DONUT_KING"],
+    "createdAt": "2024-01-06T00:00:00Z"
+  },
+  {
+    "id": "team-007",
+    "name": "Glass Wall FC",
+    "captain": {
+      "id": "u013",
+      "name": "Mike Huang",
+      "phone": "6281234567802",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u014",
+      "name": "Nathan Ong",
+      "phone": "6281234567803",
+      "avatarUrl": null
+    },
+    "mmr": 1240,
+    "tier": "MYTHIC",
+    "rank": 7,
+    "isOpenSparring": true,
+    "winStreak": 1,
+    "badges": [],
+    "createdAt": "2024-01-07T00:00:00Z"
+  },
+  {
+    "id": "team-008",
+    "name": "Spin Masters",
+    "captain": {
+      "id": "u015",
+      "name": "Oscar Putra",
+      "phone": "6281234567804",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u016",
+      "name": "Patrick Salim",
+      "phone": "6281234567805",
+      "avatarUrl": null
+    },
+    "mmr": 1220,
+    "tier": "MYTHIC",
+    "rank": 8,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-08T00:00:00Z"
+  },
+  {
+    "id": "team-009",
+    "name": "Volley Vipers",
+    "captain": {
+      "id": "u017",
+      "name": "Ricky Atmaja",
+      "phone": "6281234567806",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u018",
+      "name": "Steven Chen",
+      "phone": "6281234567807",
+      "avatarUrl": null
+    },
+    "mmr": 1200,
+    "tier": "MYTHIC",
+    "rank": 9,
+    "isOpenSparring": true,
+    "winStreak": 2,
+    "badges": ["MARATHON"],
+    "createdAt": "2024-01-09T00:00:00Z"
+  },
+  {
+    "id": "team-010",
+    "name": "Point Breakers",
+    "captain": {
+      "id": "u019",
+      "name": "Tony Budiman",
+      "phone": "6281234567808",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u020",
+      "name": "Umar Ibrahim",
+      "phone": "6281234567809",
+      "avatarUrl": null
+    },
+    "mmr": 1180,
+    "tier": "MYTHIC",
+    "rank": 10,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-10T00:00:00Z"
+  },
+  {
+    "id": "team-011",
+    "name": "Lob Lords",
+    "captain": {
+      "id": "u021",
+      "name": "Vincent Tanu",
+      "phone": "6281234567810",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u022",
+      "name": "William Oei",
+      "phone": "6281234567811",
+      "avatarUrl": null
+    },
+    "mmr": 1160,
+    "tier": "LEGEND",
+    "rank": 11,
+    "isOpenSparring": true,
+    "winStreak": 1,
+    "badges": [],
+    "createdAt": "2024-01-11T00:00:00Z"
+  },
+  {
+    "id": "team-012",
+    "name": "Couple Goals",
+    "captain": {
+      "id": "u001",
+      "name": "Andi Wijaya",
+      "phone": "6281234567890",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u023",
+      "name": "Sari Wijaya",
+      "phone": "6281234567812",
+      "avatarUrl": null
+    },
+    "mmr": 1140,
+    "tier": "LEGEND",
+    "rank": 12,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-12T00:00:00Z"
+  },
+  {
+    "id": "team-013",
+    "name": "Rally Rockets",
+    "captain": {
+      "id": "u024",
+      "name": "Yoga Pratama",
+      "phone": "6281234567813",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u025",
+      "name": "Zack Hartono",
+      "phone": "6281234567814",
+      "avatarUrl": null
+    },
+    "mmr": 1120,
+    "tier": "LEGEND",
+    "rank": 13,
+    "isOpenSparring": true,
+    "winStreak": 0,
+    "badges": ["GIANT_SLAYER"],
+    "createdAt": "2024-01-13T00:00:00Z"
+  },
+  {
+    "id": "team-014",
+    "name": "Ace Hunters",
+    "captain": {
+      "id": "u026",
+      "name": "Adam Setiawan",
+      "phone": "6281234567815",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u027",
+      "name": "Bryan Kusuma",
+      "phone": "6281234567816",
+      "avatarUrl": null
+    },
+    "mmr": 1100,
+    "tier": "LEGEND",
+    "rank": 14,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-14T00:00:00Z"
+  },
+  {
+    "id": "team-015",
+    "name": "Drop Shot Kings",
+    "captain": {
+      "id": "u028",
+      "name": "Chris Halim",
+      "phone": "6281234567817",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u029",
+      "name": "Dennis Tjandra",
+      "phone": "6281234567818",
+      "avatarUrl": null
+    },
+    "mmr": 1080,
+    "tier": "LEGEND",
+    "rank": 15,
+    "isOpenSparring": true,
+    "winStreak": 1,
+    "badges": [],
+    "createdAt": "2024-01-15T00:00:00Z"
+  },
+  {
+    "id": "team-016",
+    "name": "Wall Warriors",
+    "captain": {
+      "id": "u030",
+      "name": "Edward Lim",
+      "phone": "6281234567819",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u031",
+      "name": "Faisal Rahman",
+      "phone": "6281234567820",
+      "avatarUrl": null
+    },
+    "mmr": 1050,
+    "tier": "LEGEND",
+    "rank": 20,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-16T00:00:00Z"
+  },
+  {
+    "id": "team-017",
+    "name": "Padel Pandas",
+    "captain": {
+      "id": "u032",
+      "name": "George Tjoa",
+      "phone": "6281234567821",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u033",
+      "name": "Harry Tan",
+      "phone": "6281234567822",
+      "avatarUrl": null
+    },
+    "mmr": 1020,
+    "tier": "LEGEND",
+    "rank": 25,
+    "isOpenSparring": true,
+    "winStreak": 0,
+    "badges": ["DONUT_KING"],
+    "createdAt": "2024-01-17T00:00:00Z"
+  },
+  {
+    "id": "team-018",
+    "name": "Serve & Volley",
+    "captain": {
+      "id": "u034",
+      "name": "Ian Christianto",
+      "phone": "6281234567823",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u035",
+      "name": "James Tanjung",
+      "phone": "6281234567824",
+      "avatarUrl": null
+    },
+    "mmr": 1000,
+    "tier": "LEGEND",
+    "rank": 30,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-18T00:00:00Z"
+  },
+  {
+    "id": "team-019",
+    "name": "Newbie Squad",
+    "captain": {
+      "id": "u036",
+      "name": "Kenny Liem",
+      "phone": "6281234567825",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u037",
+      "name": "Linus Chandra",
+      "phone": "6281234567826",
+      "avatarUrl": null
+    },
+    "mmr": 980,
+    "tier": "EPIC",
+    "rank": 35,
+    "isOpenSparring": true,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-19T00:00:00Z"
+  },
+  {
+    "id": "team-020",
+    "name": "Weekend Warriors",
+    "captain": {
+      "id": "u038",
+      "name": "Marco Sutanto",
+      "phone": "6281234567827",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u039",
+      "name": "Nicholas Ang",
+      "phone": "6281234567828",
+      "avatarUrl": null
+    },
+    "mmr": 950,
+    "tier": "EPIC",
+    "rank": 45,
+    "isOpenSparring": true,
+    "winStreak": 2,
+    "badges": [],
+    "createdAt": "2024-01-20T00:00:00Z"
+  },
+  {
+    "id": "team-021",
+    "name": "Casual Crew",
+    "captain": {
+      "id": "u040",
+      "name": "Oscar Permadi",
+      "phone": "6281234567829",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u041",
+      "name": "Peter Wang",
+      "phone": "6281234567830",
+      "avatarUrl": null
+    },
+    "mmr": 900,
+    "tier": "EPIC",
+    "rank": 55,
+    "isOpenSparring": false,
+    "winStreak": 0,
+    "badges": ["NIGHT_OWL"],
+    "createdAt": "2024-01-21T00:00:00Z"
+  },
+  {
+    "id": "team-022",
+    "name": "Fun First",
+    "captain": {
+      "id": "u042",
+      "name": "Quincy Halim",
+      "phone": "6281234567831",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u043",
+      "name": "Ryan Budiono",
+      "phone": "6281234567832",
+      "avatarUrl": null
+    },
+    "mmr": 850,
+    "tier": "HERALD",
+    "rank": 65,
+    "isOpenSparring": true,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-22T00:00:00Z"
+  },
+  {
+    "id": "team-023",
+    "name": "Learning Curve",
+    "captain": {
+      "id": "u044",
+      "name": "Samuel Tio",
+      "phone": "6281234567833",
+      "avatarUrl": null
+    },
+    "partner": {
+      "id": "u045",
+      "name": "Timothy Chen",
+      "phone": "6281234567834",
+      "avatarUrl": null
+    },
+    "mmr": 800,
+    "tier": "HERALD",
+    "rank": 70,
+    "isOpenSparring": true,
+    "winStreak": 0,
+    "badges": [],
+    "createdAt": "2024-01-23T00:00:00Z"
+  }
+]
