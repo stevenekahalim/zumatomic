@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
-import { X, Target, Zap, Megaphone } from "lucide-react"
+import { X, Zap, Megaphone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SparringFormModal } from "@/components/match/SparringFormModal"
 
@@ -35,14 +35,6 @@ export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
       icon: Zap,
       color: "var(--color-toxic)",
       onClick: handleSparringClick,
-    },
-    {
-      id: "forecast",
-      label: "Match Forecast",
-      description: "Prediksi hasil pertandingan",
-      icon: Target,
-      color: "var(--tier-mythic)",
-      href: "/play/forecast",
     },
     {
       id: "broadcast",

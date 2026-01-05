@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Trophy, TrendingUp, ChevronDown, Circle, Zap, MessageSquare, Users, Clock, Target, ChevronRight, Flame } from "lucide-react"
+import { Trophy, TrendingUp, ChevronDown, Circle, Zap, MessageSquare, Users, Clock, ChevronRight, Flame } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -219,29 +219,6 @@ export default function HomePage() {
           <Link href="/league" className="glass-card p-3 text-center hover:bg-white/5 transition-colors">
             <p className="text-2xl font-bold font-mono text-white">#{activeTeam?.rank || "-"}</p>
             <p className="text-[10px] text-[var(--text-secondary)] mt-1 uppercase tracking-wider">Rank</p>
-          </Link>
-        </motion.div>
-
-        {/* Forecast Widget */}
-        <motion.div variants={itemVariants}>
-          <Link
-            href="/play/forecast"
-            className="block glass-card p-4 mb-6 relative overflow-hidden group"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[var(--tier-mythic)]/20 flex items-center justify-center">
-                <Target size={24} className="text-[var(--tier-mythic)]" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold mb-0.5">Match Forecast</h3>
-                <p className="text-sm text-[var(--text-secondary)]">
-                  Prediksi hasil pertandinganmu
-                </p>
-              </div>
-              <ChevronRight size={20} className="text-[var(--text-tertiary)] group-hover:text-white transition-colors" />
-            </div>
-            {/* Glow effect */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--tier-mythic)]/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
           </Link>
         </motion.div>
 
