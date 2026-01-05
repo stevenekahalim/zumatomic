@@ -99,14 +99,6 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
 
   return (
     <div className="space-y-5">
-      {/* Title & Time */}
-      <div>
-        <h2 className="text-xl font-bold mb-1 text-[var(--text-primary)]">{lobby.customTitle}</h2>
-        <p className="text-sm text-[var(--text-secondary)]">
-          {formatDate(lobby.date)} @ {formatTime(lobby.time)}
-        </p>
-      </div>
-
       {/* Host Block */}
       <div className="glass-card rounded-xl p-4">
         <p className="text-xs text-[var(--text-tertiary)] uppercase tracking-wider mb-2">Host</p>
