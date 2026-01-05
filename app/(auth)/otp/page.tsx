@@ -14,7 +14,6 @@ function OTPContent() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""])
   const [isLoading, setIsLoading] = useState(false)
   const [isVerified, setIsVerified] = useState(false)
-  const [error, setError] = useState("")
   const [resendTimer, setResendTimer] = useState(30)
   const [canResend, setCanResend] = useState(false)
 
@@ -39,14 +38,14 @@ function OTPContent() {
     const newOtp = [...otp]
     newOtp[index] = value.slice(-1)
     setOtp(newOtp)
-    setError("")
 
     if (value && index < 5) {
       inputRefs.current[index + 1]?.focus()
     }
 
+    // Auto-verify when all 6 digits entered (DEMO MODE - any code works)
     if (newOtp.every((digit) => digit) && index === 5) {
-      handleVerify(newOtp.join(""))
+      handleVerify()
     }
   }
 
@@ -63,25 +62,17 @@ function OTPContent() {
     if (pastedData.length === 6) {
       const newOtp = pastedData.split("")
       setOtp(newOtp)
-      handleVerify(pastedData)
+      handleVerify()
     }
   }
 
-  const handleVerify = async (code: string) => {
+  // DEMO MODE: Always succeeds
+  const handleVerify = async () => {
     setIsLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    if (code === "123456") {
-      setIsVerified(true)
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      router.push("/register")
-    } else {
-      setError("Kode OTP salah. Silakan coba lagi.")
-      setOtp(["", "", "", "", "", ""])
-      inputRefs.current[0]?.focus()
-    }
-
-    setIsLoading(false)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    setIsVerified(true)
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    router.push("/register")
   }
 
   const handleResend = async () => {
@@ -90,7 +81,6 @@ function OTPContent() {
     setCanResend(false)
     setResendTimer(30)
     setOtp(["", "", "", "", "", ""])
-    setError("")
     inputRefs.current[0]?.focus()
 
     await new Promise((resolve) => setTimeout(resolve, 500))
@@ -127,9 +117,9 @@ function OTPContent() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--accent-primary)]/20 flex items-center justify-center"
+              className="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--color-toxic)]/20 flex items-center justify-center"
             >
-              <CheckCircle size={40} className="text-[var(--accent-primary)]" />
+              <CheckCircle size={40} className="text-[var(--color-toxic)]" />
             </motion.div>
             <h2 className="text-[20px] font-bold mb-2">Berhasil!</h2>
             <p className="text-[15px] text-[var(--text-secondary)]">Kode OTP terverifikasi</p>
@@ -172,13 +162,8 @@ function OTPContent() {
                   className={`
                     w-[48px] h-[56px] text-center text-[24px] font-bold rounded-xl
                     glass-card border-2 transition-all
-                    focus:outline-none focus:ring-0
-                    ${digit
-                      ? "border-[var(--accent-primary)] text-white"
-                      : error
-                        ? "border-red-500"
-                        : "text-white"
-                    }
+                    focus:outline-none focus:ring-0 focus:border-[var(--color-toxic)]
+                    ${digit ? "border-[var(--color-toxic)] text-white" : "text-white"}
                     ${isLoading ? "opacity-50" : ""}
                   `}
                   disabled={isLoading}
@@ -186,28 +171,17 @@ function OTPContent() {
               ))}
             </motion.div>
 
-            {/* Error message */}
-            {error && (
-              <motion.p
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-red-500 text-[13px] mb-6 text-center"
-              >
-                {error}
-              </motion.p>
-            )}
-
-            {/* Hint */}
-            <motion.p
+            {/* Hint - Demo mode */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-[12px] text-[var(--text-secondary)] mb-8 text-center leading-relaxed"
+              className="glass-card px-4 py-3 mb-8 text-center"
             >
-              Cek WhatsApp kamu untuk kode OTP
-              <br />
-              <span className="text-[var(--accent-primary)] font-medium">(Gunakan 123456 untuk demo)</span>
-            </motion.p>
+              <p className="text-[12px] text-[var(--color-toxic)] font-medium">
+                Demo Mode: Masukkan 6 digit angka apapun
+              </p>
+            </motion.div>
 
             {/* Resend button */}
             <motion.div
@@ -219,7 +193,7 @@ function OTPContent() {
               {canResend ? (
                 <button
                   onClick={handleResend}
-                  className="flex items-center gap-2 text-[14px] text-[var(--accent-primary)] font-medium min-h-[44px] px-4"
+                  className="flex items-center gap-2 text-[14px] text-[var(--color-toxic)] font-medium min-h-[44px] px-4"
                 >
                   <RefreshCw size={16} />
                   Kirim Ulang Kode
@@ -250,7 +224,7 @@ function OTPContent() {
             isLoading={isLoading}
             loadingText="Memverifikasi..."
             disabled={!otp.every((digit) => digit) || isLoading}
-            onClick={() => handleVerify(otp.join(""))}
+            onClick={() => handleVerify()}
           >
             Verifikasi
           </RippleButton>
@@ -264,7 +238,7 @@ export default function OTPPage() {
   return (
     <Suspense fallback={
       <div className="flex-1 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[var(--accent-primary)]/30 border-t-[var(--accent-primary)] rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[var(--color-toxic)]/30 border-t-[var(--color-toxic)] rounded-full animate-spin" />
       </div>
     }>
       <OTPContent />
