@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Search, SlidersHorizontal, X, Calendar, Clock } from "lucide-react"
+import { Search, SlidersHorizontal, X, Calendar, Clock, Trophy, Plus } from "lucide-react"
 import { TeamCard, TeamCardSkeleton } from "@/components/leaderboard/TeamCard"
 import { TierBadge } from "@/components/leaderboard/TierBadge"
 import { TierName, TIERS } from "@/lib/constants"
@@ -10,6 +10,7 @@ import teamsData from "@/data/mock/teams.json"
 import seasonData from "@/data/mock/season.json"
 import { Team } from "@/types"
 import { motion, AnimatePresence } from "framer-motion"
+import { LeagueMatchModal } from "@/components/match/LeagueMatchModal"
 
 type FilterType = "all" | "open" | TierName
 
@@ -34,6 +35,7 @@ export default function LeaguePage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeFilter, setActiveFilter] = useState<FilterType>("all")
   const [isLoading] = useState(false)
+  const [showLeagueMatchModal, setShowLeagueMatchModal] = useState(false)
 
   const teams = teamsData as Team[]
   const season = seasonData
@@ -149,6 +151,16 @@ export default function LeaguePage() {
               <p className="text-xs text-[var(--text-secondary)]">Open</p>
             </div>
           </div>
+
+          {/* Report League Match Button */}
+          <motion.button
+            onClick={() => setShowLeagueMatchModal(true)}
+            whileTap={{ scale: 0.98 }}
+            className="w-full mt-4 h-12 rounded-xl bg-[var(--tier-legend)] text-white font-semibold flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,200,0,0.3)]"
+          >
+            <Trophy size={20} />
+            Report League Match
+          </motion.button>
         </div>
       </motion.div>
 
@@ -271,6 +283,12 @@ export default function LeaguePage() {
           </div>
         )}
       </div>
+
+      {/* League Match Modal */}
+      <LeagueMatchModal
+        isOpen={showLeagueMatchModal}
+        onClose={() => setShowLeagueMatchModal(false)}
+      />
     </div>
   )
 }
