@@ -48,14 +48,13 @@ export function BottomNav() {
                 href={item.href}
                 className={cn(
                   "relative flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[48px] px-3 py-2 transition-all duration-200",
-                  isActive ? "text-[var(--color-toxic)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
+                  isActive ? "text-[var(--color-primary)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute -top-1 w-8 h-1 rounded-full bg-[var(--color-toxic)]"
-                    style={{ boxShadow: 'var(--glow-toxic)' }}
+                    className="absolute -top-1 w-8 h-1 rounded-full bg-[var(--color-primary)]"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                   />
                 )}
@@ -83,18 +82,18 @@ export function BottomNav() {
               whileTap={{ scale: 0.9 }}
               className={cn(
                 "relative -mt-8 w-14 h-14 rounded-full",
-                "bg-[var(--color-toxic)] text-[var(--bg-void)]",
+                "bg-[var(--color-primary)] text-white",
                 "flex items-center justify-center",
-                "shadow-[0_0_20px_rgba(204,255,0,0.5),0_4px_12px_rgba(0,0,0,0.4)]",
-                "transition-all duration-200 hover:shadow-[0_0_30px_rgba(204,255,0,0.6)]"
+                "shadow-lg",
+                "transition-all duration-200"
               )}
             >
-              {/* Glow ring animation */}
+              {/* Subtle ring animation */}
               <motion.div
-                className="absolute inset-0 rounded-full bg-[var(--color-toxic)]"
+                className="absolute inset-0 rounded-full bg-[var(--color-primary)]"
                 animate={{
                   scale: [1, 1.15, 1],
-                  opacity: [0.4, 0, 0.4],
+                  opacity: [0.3, 0, 0.3],
                 }}
                 transition={{
                   duration: 2,
@@ -104,7 +103,7 @@ export function BottomNav() {
               />
               <Zap size={26} strokeWidth={2.5} className="relative z-10" />
             </motion.button>
-            <span className="absolute -bottom-0.5 text-[10px] font-semibold text-[var(--color-toxic)]">
+            <span className="absolute -bottom-0.5 text-[10px] font-semibold text-[var(--color-primary)]">
               Record
             </span>
           </div>
@@ -120,14 +119,13 @@ export function BottomNav() {
                 href={item.href}
                 className={cn(
                   "relative flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[48px] px-3 py-2 transition-all duration-200",
-                  isActive ? "text-[var(--color-toxic)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
+                  isActive ? "text-[var(--color-primary)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute -top-1 w-8 h-1 rounded-full bg-[var(--color-toxic)]"
-                    style={{ boxShadow: 'var(--glow-toxic)' }}
+                    className="absolute -top-1 w-8 h-1 rounded-full bg-[var(--color-primary)]"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                   />
                 )}

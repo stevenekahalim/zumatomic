@@ -1,11 +1,13 @@
 "use client"
 
-import { Trophy, TrendingUp, Circle, Zap, Search, Clock, ChevronRight, Flame, Star, Award } from "lucide-react"
+import { Trophy, TrendingUp, Circle, Zap, ChevronRight, Flame, Award } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { TierBadge } from "@/components/leaderboard/TierBadge"
+import { MatchResultCard, MatchResultData } from "@/components/shared/MatchResultCard"
 import teamsData from "@/data/mock/teams.json"
+import matchesData from "@/data/mock/matches.json"
 import { Team } from "@/types"
 
 // Mock current user with ONE team per season (One-Team Policy)
@@ -16,36 +18,8 @@ const mockUser = {
   mmr_change: +0.05,
 }
 
-// Mock League Updates (Official Results - Priority Section)
-const leagueUpdates = [
-  {
-    id: "l1",
-    type: "big_match" as const,
-    teamA: "Duo Maut",
-    teamB: "Padel Bros",
-    sets: ["6-4", "4-6", "6-3"],  // Best-of-3 format
-    winner: "teamA",
-    time: "2 menit lalu",
-    isHighlight: true,
-  },
-  {
-    id: "l2",
-    type: "rank_up" as const,
-    team: "Thunder Duo",
-    newTier: "LEGEND" as const,
-    time: "15 menit lalu",
-  },
-  {
-    id: "l3",
-    type: "big_match" as const,
-    teamA: "Net Masters",
-    teamB: "Glass Wall FC",
-    sets: ["7-5", "6-4"],  // 2-0 sweep
-    winner: "teamB",
-    time: "45 menit lalu",
-    isHighlight: true,
-  },
-]
+// Get recent match results from mock data
+const recentMatches = (matchesData as MatchResultData[]).slice(0, 3)
 
 // Mock Friends Activity (Social Feed - Secondary Section)
 const friendsActivity = [
@@ -187,103 +161,31 @@ export default function HomePage() {
           </Link>
         </motion.div>
 
-        {/* SECTION 1: LEAGUE UPDATES (Priority - Horizontal Carousel) */}
+        {/* SECTION 1: RECENT MATCHES */}
         <motion.div variants={itemVariants} className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Trophy size={18} className="text-[var(--tier-legend)]" />
-              <h2 className="font-semibold text-[17px]">League Updates</h2>
+              <h2 className="font-semibold text-[17px] text-[var(--text-primary)]">Recent Matches</h2>
             </div>
-            <Link href="/league" className="text-xs text-[var(--color-toxic)] flex items-center gap-1">
+            <Link href="/match/history" className="text-xs text-[var(--color-primary)] flex items-center gap-1">
               View All <ChevronRight size={14} />
             </Link>
           </div>
 
-          {/* Horizontal Scroll Carousel */}
-          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-            {leagueUpdates.map((update, index) => (
+          {/* Match Cards */}
+          <div className="space-y-3">
+            {recentMatches.map((match, index) => (
               <motion.div
-                key={update.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
+                key={match.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={cn(
-                  "flex-shrink-0 w-[280px] p-4 rounded-2xl",
-                  update.type === "big_match"
-                    ? "bg-gradient-to-br from-[var(--tier-legend)]/20 to-transparent border border-[var(--tier-legend)]/30"
-                    : "glass-card"
-                )}
               >
-                {update.type === "big_match" && (
-                  <>
-                    <div className="flex items-center gap-2 mb-3">
-                      <Star size={14} className="text-[var(--tier-legend)]" />
-                      <span className="text-xs font-semibold text-[var(--tier-legend)] uppercase tracking-wider">
-                        Big Match
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-center flex-1">
-                        <div className={cn(
-                          "w-12 h-12 rounded-xl mx-auto mb-2 flex items-center justify-center text-lg font-bold",
-                          update.winner === "teamA"
-                            ? "bg-[var(--color-toxic)]/20 text-[var(--color-toxic)]"
-                            : "bg-white/10"
-                        )}>
-                          {update.teamA.charAt(0)}
-                        </div>
-                        <p className={cn(
-                          "text-sm font-medium truncate",
-                          update.winner === "teamA" && "text-[var(--color-toxic)]"
-                        )}>
-                          {update.teamA}
-                        </p>
-                      </div>
-                      <div className="px-3 text-center">
-                        <div className="flex flex-col gap-1">
-                          {update.sets?.map((set, i) => (
-                            <span key={i} className="text-lg font-mono font-bold">
-                              {set}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="text-center flex-1">
-                        <div className={cn(
-                          "w-12 h-12 rounded-xl mx-auto mb-2 flex items-center justify-center text-lg font-bold",
-                          update.winner === "teamB"
-                            ? "bg-[var(--color-toxic)]/20 text-[var(--color-toxic)]"
-                            : "bg-white/10"
-                        )}>
-                          {update.teamB.charAt(0)}
-                        </div>
-                        <p className={cn(
-                          "text-sm font-medium truncate",
-                          update.winner === "teamB" && "text-[var(--color-toxic)]"
-                        )}>
-                          {update.teamB}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-xs text-[var(--text-secondary)] text-center mt-3">{update.time}</p>
-                  </>
-                )}
-
-                {update.type === "rank_up" && (
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-[var(--tier-legend)]/20 flex items-center justify-center">
-                      <Trophy size={24} className="text-[var(--tier-legend)]" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-medium">{update.team}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-[var(--text-secondary)]">promoted to</span>
-                        <TierBadge tier={update.newTier} size="sm" />
-                      </div>
-                      <p className="text-xs text-[var(--text-secondary)] mt-1">{update.time}</p>
-                    </div>
-                  </div>
-                )}
+                <MatchResultCard
+                  match={match}
+                  onClick={() => console.log("Match clicked:", match.id)}
+                />
               </motion.div>
             ))}
           </div>
@@ -360,29 +262,6 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* Quick Links */}
-        <motion.div variants={itemVariants} className="mt-6 grid grid-cols-2 gap-3">
-          <Link
-            href="/connect"
-            className="glass-card p-4 flex items-center gap-3 hover:bg-white/5 transition-colors"
-          >
-            <Search size={20} className="text-[var(--tier-epic)]" />
-            <div>
-              <p className="font-medium text-sm">Find Games</p>
-              <p className="text-xs text-[var(--text-secondary)]">Players & matches</p>
-            </div>
-          </Link>
-          <Link
-            href="/match/history"
-            className="glass-card p-4 flex items-center gap-3 hover:bg-white/5 transition-colors"
-          >
-            <Clock size={20} className="text-[var(--text-secondary)]" />
-            <div>
-              <p className="font-medium text-sm">Match History</p>
-              <p className="text-xs text-[var(--text-secondary)]">View all</p>
-            </div>
-          </Link>
-        </motion.div>
       </div>
     </motion.div>
   )

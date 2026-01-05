@@ -1,64 +1,74 @@
 @import "tailwindcss";
 
 /* ========================================
-   ZUMATOMIC DESIGN SYSTEM v1.0
-   Code Name: Nocturnal Stadium
-   "Liquid Smoke" x "High-Performance Sport"
+   ZUMATOMIC DESIGN SYSTEM v2.0
+   Code Name: Playtomic Light
+   Clean, minimal sports app design
    ======================================== */
 
 :root {
-  /* ===== THE VOID (Backgrounds) ===== */
-  --bg-void: #050505;           /* Main App Background - Almost Black, OLED optimized */
-  --bg-depth: #001A0E;          /* Deep Forest Green - for gradient fades */
+  /* ===== BACKGROUNDS ===== */
+  --bg-main: #F7F8FA;           /* App background - light gray */
+  --bg-card: #FFFFFF;           /* Card background - white */
+  --bg-elevated: #FFFFFF;       /* Elevated surfaces */
+  --bg-input: #F3F4F6;          /* Input fields */
 
-  /* ===== THE ACCENTS (Action & Brand) ===== */
-  --color-toxic: #CCFF00;       /* Primary Action / CTA - Electric Lime / Volt */
-  --color-forest: #064E3B;      /* Brand Identity - Deep Racing Green */
-  --color-error: #FF3B30;       /* Destructive - Neon Red */
+  /* ===== PRIMARY (Navy Blue) ===== */
+  --color-primary: #1C3F60;     /* Primary action - Navy */
+  --color-primary-light: #2D5A87;
+  --color-primary-dark: #142E47;
+
+  /* ===== ACCENT COLORS ===== */
+  --color-accent: #3B82F6;      /* Blue accent */
+  --color-success: #22C55E;     /* Green */
+  --color-error: #EF4444;       /* Red */
+  --color-warning: #F59E0B;     /* Amber */
 
   /* ===== TIER HIERARCHY (Rank Colors) ===== */
-  --tier-mythic: #D946EF;       /* Fuchsia Neon */
+  --tier-mythic: #9333EA;       /* Purple */
   --tier-legend: #EAB308;       /* Gold */
-  --tier-epic: #22C55E;         /* Bright Green */
-  --tier-herald: #94A3B8;       /* Cool Grey */
+  --tier-epic: #22C55E;         /* Green */
+  --tier-herald: #6B7280;       /* Gray */
 
   /* ===== TEXT HIERARCHY ===== */
-  --text-primary: #FFFFFF;      /* 100% White - Headings, Names, Scores */
-  --text-secondary: #A1A1AA;    /* Zinc 400 - Subtitles, Metadata */
-  --text-tertiary: #52525B;     /* Zinc 600 - Placeholders, Inactive */
+  --text-primary: #1A1A1A;      /* Headings, names */
+  --text-secondary: #6B7280;    /* Subtitles, metadata */
+  --text-tertiary: #9CA3AF;     /* Placeholders, inactive */
+  --text-inverse: #FFFFFF;      /* White text on dark bg */
 
-  /* ===== LIQUID SMOKE MATERIAL ===== */
-  --glass-bg: rgba(20, 20, 20, 0.65);           /* Translucent Charcoal */
-  --glass-blur: 16px;
-  --glass-border: rgba(255, 255, 255, 0.08);    /* Subtle white edge */
-  --glass-border-top: rgba(255, 255, 255, 0.15); /* Brighter top edge */
-  --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4);
+  /* ===== BORDERS ===== */
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+  --border-dark: #9CA3AF;
 
-  /* ===== TOXIC GLOW ===== */
-  --glow-toxic: 0 0 15px rgba(204, 255, 0, 0.4);
-  --glow-toxic-intense: 0 0 25px rgba(204, 255, 0, 0.6);
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-  /* ===== LAYOUT (8pt Grid) ===== */
-  --bottom-nav-height: 80px;    /* Floating Glass Nav */
+  /* ===== LAYOUT ===== */
+  --bottom-nav-height: 80px;
   --header-height: 56px;
   --content-max-width: 480px;
   --page-padding: 16px;
+  --nav-height: 80px;
 
   /* ===== SPACING (8pt Base) ===== */
   --space-1: 4px;
   --space-2: 8px;
-  --space-3: 12px;   /* Tight gap between cards */
-  --space-4: 16px;   /* Standard gap / card padding */
-  --space-5: 20px;   /* Comfort padding */
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
 
   /* ===== BORDER RADIUS ===== */
-  --radius-sm: 8px;             /* Small buttons/badges */
+  --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;            /* Standard card */
+  --radius-lg: 16px;
   --radius-xl: 20px;
-  --radius-full: 9999px;        /* Pills */
+  --radius-full: 9999px;
 
   /* ===== TRANSITIONS ===== */
   --transition-fast: 0.15s ease-out;
@@ -69,12 +79,14 @@
   --touch-target-min: 44px;
 
   /* Legacy compatibility */
-  --accent-primary: var(--color-toxic);
-  --dark-bg: var(--bg-void);
+  --color-toxic: var(--color-primary);
+  --bg-void: var(--bg-main);
+  --accent-primary: var(--color-primary);
+  --dark-bg: var(--bg-main);
 }
 
 @theme inline {
-  --color-background: var(--bg-void);
+  --color-background: var(--bg-main);
   --color-foreground: var(--text-primary);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-space-mono);
@@ -91,7 +103,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: var(--bg-void);
+  background: var(--bg-main);
   color: var(--text-primary);
 }
 
@@ -99,117 +111,104 @@ body {
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Atmospheric Darkness - subtle depth gradient */
-  background:
-    radial-gradient(ellipse at 50% 0%, var(--bg-depth) 0%, transparent 50%),
-    var(--bg-void);
-  background-attachment: fixed;
+  background: var(--bg-main);
   min-height: 100vh;
 }
 
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-tertiary);
-  border-radius: 4px;
+  background: var(--border-medium);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--text-tertiary);
 }
 
 /* ========================================
-   THE "LIQUID SMOKE" MATERIAL
-   Signature look - smoked glass effect
+   CARD COMPONENTS
+   Clean white cards with subtle shadows
    ======================================== */
 
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
+}
+
+.card:active {
+  box-shadow: var(--shadow-md);
+}
+
+.card-elevated {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Legacy glass-card support (maps to card) */
 .glass-card {
-  /* The Surface */
-  background: var(--glass-bg);
-
-  /* The Blur (The "Liquid" Feel) */
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-
-  /* The Specular Edge (Light reflection on cut glass) */
-  border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top);
-
-  /* The Shadow (Depth) */
-  box-shadow: var(--glass-shadow);
-
-  /* Standard radius */
-  border-radius: var(--radius-lg);
-
-  /* Tactile interaction */
-  transition: transform var(--transition-base), filter var(--transition-base);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
 }
 
 .glass-card:active {
-  transform: scale(0.98);
-  filter: brightness(1.05);
+  box-shadow: var(--shadow-md);
 }
 
-/* Elevated glass - for floating elements */
 .glass-elevated {
-  background: rgba(20, 20, 20, 0.8);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border);
-  border-top-color: var(--glass-border-top);
-  box-shadow:
-    var(--glass-shadow),
-    0 8px 32px rgba(0, 0, 0, 0.3);
-  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
 }
 
 /* ===== TYPOGRAPHY CLASSES ===== */
 
-/* H1 DISPLAY - Page Titles */
 .text-display {
   font-size: 24px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-primary);
-}
-
-/* H2 CARD TITLE - Team Names */
-.text-title {
-  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-/* DATA SCORE - Scoreboard numbers */
+.text-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 .text-score {
-  font-family: var(--font-space-mono), 'Space Mono', 'JetBrains Mono', monospace;
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
   font-size: 32px;
   font-weight: 500;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
 }
 
-/* Smaller score variant */
 .text-score-sm {
-  font-family: var(--font-space-mono), 'Space Mono', 'JetBrains Mono', monospace;
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
   font-size: 20px;
   font-weight: 500;
   color: var(--text-primary);
   font-variant-numeric: tabular-nums;
 }
 
-/* MMR / Stats numbers */
 .text-data {
-  font-family: var(--font-space-mono), 'Space Mono', 'JetBrains Mono', monospace;
+  font-family: var(--font-space-mono), 'Space Mono', monospace;
   font-size: 15px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -217,10 +216,9 @@ body {
 
 /* ===== BUTTONS ===== */
 
-/* Primary CTA - Toxic Volt */
 .btn-primary {
-  background: var(--color-toxic);
-  color: var(--bg-void);
+  background: var(--color-primary);
+  color: var(--text-inverse);
   font-weight: 600;
   border-radius: var(--radius-full);
   padding: 14px 28px;
@@ -228,49 +226,45 @@ body {
   border: none;
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: var(--glow-toxic);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
-  box-shadow: var(--glow-toxic-intense);
-  transform: translateY(-1px);
+  background: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-primary:active {
   transform: scale(0.98);
+  background: var(--color-primary-dark);
 }
 
 .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
-/* Secondary Button - Glass */
 .btn-secondary {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: var(--bg-card);
   color: var(--text-primary);
   font-weight: 600;
   border-radius: var(--radius-full);
   padding: 14px 28px;
   font-size: 15px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border-medium);
   cursor: pointer;
   transition: all var(--transition-base);
 }
 
 .btn-secondary:hover {
-  background: rgba(30, 30, 30, 0.8);
-  border-color: var(--glass-border-top);
+  background: var(--bg-input);
+  border-color: var(--border-dark);
 }
 
 .btn-secondary:active {
   transform: scale(0.98);
 }
 
-/* Ghost Button */
 .btn-ghost {
   background: transparent;
   color: var(--text-secondary);
@@ -284,11 +278,10 @@ body {
 }
 
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-input);
   color: var(--text-primary);
 }
 
-/* Danger Button */
 .btn-danger {
   background: var(--color-error);
   color: white;
@@ -309,52 +302,80 @@ body {
   transform: scale(0.98);
 }
 
+/* ===== CHIPS / FILTER BUTTONS ===== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.chip-active {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.chip-inactive {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.chip-inactive:hover {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
 /* ===== TIER BADGES ===== */
 
 .tier-mythic {
   background: var(--tier-mythic);
   color: white;
-  box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
 }
 
 .tier-legend {
   background: var(--tier-legend);
   color: black;
-  box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
 }
 
 .tier-epic {
   background: var(--tier-epic);
-  color: black;
+  color: white;
 }
 
 .tier-herald {
   background: var(--tier-herald);
-  color: black;
+  color: white;
+}
+
+/* ===== MMR BADGE (Playtomic style) ===== */
+
+.mmr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  font-size: 11px;
+  font-weight: 600;
 }
 
 /* ===== STATUS INDICATORS ===== */
 
-/* Open Sparring - Toxic dot */
 .status-open {
   width: 8px;
   height: 8px;
-  background: var(--color-toxic);
+  background: var(--color-success);
   border-radius: 50%;
-  box-shadow: var(--glow-toxic);
-  animation: pulse-toxic 2s infinite;
 }
 
-@keyframes pulse-toxic {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(204, 255, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(204, 255, 0, 0);
-  }
-}
-
-/* Not Looking - Error */
 .status-closed {
   width: 8px;
   height: 8px;
@@ -365,9 +386,9 @@ body {
 /* ===== INPUT FIELDS ===== */
 
 .input-field {
-  background: rgba(20, 20, 20, 0.8);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
   color: var(--text-primary);
   padding: 14px 16px;
   font-size: 15px;
@@ -376,8 +397,8 @@ body {
 }
 
 .input-field:focus {
-  border-color: var(--color-toxic);
-  box-shadow: 0 0 0 3px rgba(204, 255, 0, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(28, 63, 96, 0.15);
   outline: none;
 }
 
@@ -397,7 +418,6 @@ body {
 
 /* ===== UTILITY CLASSES ===== */
 
-/* Hide scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -406,23 +426,13 @@ body {
   display: none;
 }
 
-/* Focus visible */
 .focus-visible:focus-visible {
-  outline: 2px solid var(--color-toxic);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
-}
-
-/* Gradient text - Toxic */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-toxic), #FFFFFF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 /* ===== ANIMATIONS ===== */
 
-/* Shimmer for loading */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
@@ -431,15 +441,14 @@ body {
 .shimmer {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.03) 100%
+    var(--border-light) 0%,
+    var(--bg-card) 50%,
+    var(--border-light) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
 
-/* Spin */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -449,7 +458,6 @@ body {
   animation: spin 1s linear infinite;
 }
 
-/* Bounce in */
 @keyframes bounce-in {
   0% { transform: scale(0); opacity: 0; }
   50% { transform: scale(1.05); }
@@ -458,16 +466,6 @@ body {
 
 .animate-bounce-in {
   animation: bounce-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Fire/Flicker for win streaks */
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-.animate-flicker {
-  animation: flicker 0.3s infinite;
 }
 
 /* Success check draw */
@@ -480,36 +478,4 @@ body {
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
   animation: draw-check 0.5s ease forwards;
-}
-
-/* Gold shimmer for Legend tier */
-@keyframes gold-shimmer {
-  0% { background-position: -100% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.tier-legend-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--tier-legend) 0%,
-    #FDE68A 25%,
-    var(--tier-legend) 50%,
-    #FDE68A 75%,
-    var(--tier-legend) 100%
-  );
-  background-size: 200% 100%;
-  animation: gold-shimmer 3s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Mythic glow pulse */
-@keyframes mythic-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(217, 70, 239, 0.4); }
-  50% { box-shadow: 0 0 35px rgba(217, 70, 239, 0.6); }
-}
-
-.tier-mythic-glow {
-  animation: mythic-pulse 2s ease-in-out infinite;
 }

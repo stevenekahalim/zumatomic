@@ -62,10 +62,10 @@ export function ChatTab({ lobby, currentUserId, isParticipant }: ChatTabProps) {
   if (!isParticipant) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-4">
+        <div className="w-16 h-16 rounded-2xl bg-[var(--bg-input)] flex items-center justify-center mb-4">
           <Lock size={24} className="text-[var(--text-tertiary)]" />
         </div>
-        <h3 className="font-semibold text-lg mb-1">Chat is locked</h3>
+        <h3 className="font-semibold text-lg mb-1 text-[var(--text-primary)]">Chat is locked</h3>
         <p className="text-sm text-[var(--text-secondary)] max-w-[240px]">
           Only confirmed participants can access the lobby chat.
         </p>
@@ -97,8 +97,8 @@ export function ChatTab({ lobby, currentUserId, isParticipant }: ChatTabProps) {
                   <div
                     className={`px-3 py-2 rounded-2xl ${
                       isOwn
-                        ? "bg-[var(--color-toxic)] text-black rounded-br-sm"
-                        : "glass-card rounded-bl-sm"
+                        ? "bg-[var(--color-primary)] text-white rounded-br-sm"
+                        : "glass-card rounded-bl-sm text-[var(--text-primary)]"
                     }`}
                   >
                     <p className="text-sm">{msg.content}</p>
@@ -115,20 +115,20 @@ export function ChatTab({ lobby, currentUserId, isParticipant }: ChatTabProps) {
       </div>
 
       {/* Input */}
-      <div className="flex items-center gap-2 pt-3 border-t border-white/10">
+      <div className="flex items-center gap-2 pt-3 border-t border-[var(--border-light)]">
         <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message..."
-          className="flex-1 h-11 px-4 rounded-xl glass-card border-0 text-sm placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+          className="flex-1 h-11 px-4 rounded-xl glass-card border-0 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={handleSend}
           disabled={!message.trim()}
-          className="w-11 h-11 rounded-xl bg-[var(--color-toxic)] text-black flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-11 h-11 rounded-xl bg-[var(--color-primary)] text-white flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Send size={18} />
         </motion.button>

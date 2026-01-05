@@ -82,19 +82,19 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
           >
             {/* Handle */}
             <div className="flex justify-center pt-3 pb-2">
-              <div className="w-10 h-1 rounded-full bg-white/20" />
+              <div className="w-10 h-1 rounded-full bg-[var(--border-medium)]" />
             </div>
 
             {/* Header */}
-            <div className="flex items-center justify-between px-5 pb-4 border-b border-white/10">
+            <div className="flex items-center justify-between px-5 pb-4 border-b border-[var(--border-light)]">
               <div className="flex items-center gap-2">
-                <Plus size={20} className="text-[var(--color-toxic)]" />
-                <h2 className="text-lg font-bold">Create Lobby</h2>
+                <Plus size={20} className="text-[var(--color-primary)]" />
+                <h2 className="text-lg font-bold text-[var(--text-primary)]">Create Lobby</h2>
               </div>
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-[var(--bg-input)] flex items-center justify-center text-[var(--text-secondary)]"
               >
                 <X size={18} />
               </motion.button>
@@ -113,7 +113,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                     className={cn(
                       "flex-1 h-12 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all",
                       formData.type === "RANKED"
-                        ? "bg-[var(--color-toxic)] text-black"
+                        ? "bg-[var(--color-primary)] text-white"
                         : "glass-card text-[var(--text-secondary)]"
                     )}
                   >
@@ -145,7 +145,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                   placeholder="Ada yang mau main?"
                   value={formData.customTitle}
                   onChange={(e) => updateField("customTitle", e.target.value)}
-                  className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+                  className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                   maxLength={60}
                 />
                 <p className="text-[10px] text-[var(--text-tertiary)] mt-1 text-right">
@@ -164,7 +164,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                     type="date"
                     value={formData.date}
                     onChange={(e) => updateField("date", e.target.value)}
-                    className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+                    className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                   />
                 </div>
                 <div>
@@ -176,7 +176,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                     type="time"
                     value={formData.time}
                     onChange={(e) => updateField("time", e.target.value)}
-                    className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+                    className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                   />
                 </div>
               </div>
@@ -194,7 +194,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                       className={cn(
                         "flex-1 h-10 rounded-lg text-sm font-medium transition-all",
                         formData.duration === opt.value
-                          ? "bg-[var(--color-toxic)] text-black"
+                          ? "bg-[var(--color-primary)] text-white"
                           : "glass-card text-[var(--text-secondary)]"
                       )}
                     >
@@ -216,8 +216,8 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                     className={cn(
                       "flex-1 h-9 rounded-lg text-xs font-medium transition-all",
                       formData.locationType === "VENUE"
-                        ? "bg-white/20 text-white"
-                        : "bg-white/5 text-[var(--text-secondary)]"
+                        ? "bg-[var(--color-primary)] text-white"
+                        : "bg-[var(--bg-input)] text-[var(--text-secondary)]"
                     )}
                   >
                     Specific Venue
@@ -227,8 +227,8 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                     className={cn(
                       "flex-1 h-9 rounded-lg text-xs font-medium transition-all",
                       formData.locationType === "FLEXIBLE"
-                        ? "bg-white/20 text-white"
-                        : "bg-white/5 text-[var(--text-secondary)]"
+                        ? "bg-[var(--color-primary)] text-white"
+                        : "bg-[var(--bg-input)] text-[var(--text-secondary)]"
                     )}
                   >
                     Flexible Area
@@ -239,7 +239,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                   placeholder={formData.locationType === "VENUE" ? "e.g., PALAS Tennis Club" : "e.g., Jakarta Barat"}
                   value={formData.locationName}
                   onChange={(e) => updateField("locationName", e.target.value)}
-                  className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+                  className="w-full h-12 px-4 rounded-xl glass-card border-0 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                 />
               </div>
 
@@ -259,7 +259,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                       placeholder="0.0"
                       value={formData.minMmr || ""}
                       onChange={(e) => updateField("minMmr", e.target.value ? parseFloat(e.target.value) : undefined)}
-                      className="w-full h-10 px-3 rounded-lg glass-card border-0 text-sm text-center font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+                      className="w-full h-10 px-3 rounded-lg glass-card border-0 text-sm text-center font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                     />
                   </div>
                   <span className="text-[var(--text-tertiary)] pt-4">—</span>
@@ -273,7 +273,7 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                       placeholder="5.0"
                       value={formData.maxMmr || ""}
                       onChange={(e) => updateField("maxMmr", e.target.value ? parseFloat(e.target.value) : undefined)}
-                      className="w-full h-10 px-3 rounded-lg glass-card border-0 text-sm text-center font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
+                      className="w-full h-10 px-3 rounded-lg glass-card border-0 text-sm text-center font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
                     />
                   </div>
                 </div>
@@ -290,17 +290,17 @@ export function CreateLobbyModal({ isOpen, onClose, onSubmit }: CreateLobbyModal
                   value={formData.notes}
                   onChange={(e) => updateField("notes", e.target.value)}
                   rows={3}
-                  className="w-full px-4 py-3 rounded-xl glass-card border-0 text-sm placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)] resize-none"
+                  className="w-full px-4 py-3 rounded-xl glass-card border-0 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] resize-none"
                 />
               </div>
             </div>
 
             {/* Submit Button */}
-            <div className="px-5 py-4 border-t border-white/10">
+            <div className="px-5 py-4 border-t border-[var(--border-light)]">
               <motion.button
                 whileTap={{ scale: 0.98 }}
                 onClick={handleSubmit}
-                className="w-full h-12 rounded-xl bg-[var(--color-toxic)] text-black text-sm font-bold flex items-center justify-center gap-2"
+                className="w-full h-12 rounded-xl bg-[var(--color-primary)] text-white text-sm font-bold flex items-center justify-center gap-2"
               >
                 <Plus size={18} />
                 Create Lobby

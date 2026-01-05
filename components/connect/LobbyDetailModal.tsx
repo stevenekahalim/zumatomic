@@ -64,7 +64,7 @@ export function LobbyDetailModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-[var(--bg-void)]"
+          className="fixed inset-0 z-50 bg-[var(--bg-main)]"
         >
           {/* Header */}
           <div className="sticky top-0 z-10 glass-elevated">
@@ -76,12 +76,12 @@ export function LobbyDetailModal({
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={onClose}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-[var(--bg-input)] flex items-center justify-center text-[var(--text-primary)]"
                 >
                   <ArrowLeft size={20} />
                 </motion.button>
                 <div className="flex-1">
-                  <h1 className="font-bold text-lg truncate">{lobby.customTitle}</h1>
+                  <h1 className="font-bold text-lg truncate text-[var(--text-primary)]">{lobby.customTitle}</h1>
                   <p className="text-xs text-[var(--text-secondary)]">
                     {lobby.confirmedPlayers.length}/{lobby.maxPlayers} players
                   </p>
@@ -97,8 +97,8 @@ export function LobbyDetailModal({
                     className={cn(
                       "flex-shrink-0 h-9 px-4 rounded-lg text-sm font-medium transition-all",
                       activeTab === tab.id
-                        ? "bg-[var(--color-toxic)] text-black"
-                        : "text-[var(--text-secondary)] hover:text-white"
+                        ? "bg-[var(--color-primary)] text-white"
+                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                     )}
                   >
                     {tab.label}
@@ -147,7 +147,7 @@ export function LobbyDetailModal({
 
           {/* Sticky Footer Actions */}
           {!isHost && lobby.status !== "FINISHED" && (
-            <div className="fixed bottom-0 left-0 right-0 z-20 glass-elevated border-t border-white/10">
+            <div className="fixed bottom-0 left-0 right-0 z-20 glass-elevated border-t border-[var(--border-light)]">
               <div
                 className="max-w-[var(--content-max-width)] mx-auto py-4 flex gap-3"
                 style={{ paddingLeft: 'var(--page-padding)', paddingRight: 'var(--page-padding)' }}
@@ -172,14 +172,14 @@ export function LobbyDetailModal({
                     Request pending...
                   </div>
                 ) : isFull ? (
-                  <div className="flex-1 h-12 rounded-xl bg-white/10 text-[var(--text-secondary)] text-sm font-semibold flex items-center justify-center">
+                  <div className="flex-1 h-12 rounded-xl bg-[var(--bg-input)] text-[var(--text-secondary)] text-sm font-semibold flex items-center justify-center">
                     Lobby full
                   </div>
                 ) : (
                   <motion.button
                     whileTap={{ scale: 0.98 }}
                     onClick={handleRequestToJoin}
-                    className="flex-1 h-12 rounded-xl bg-[var(--color-toxic)] text-black text-sm font-semibold flex items-center justify-center gap-2"
+                    className="flex-1 h-12 rounded-xl bg-[var(--color-primary)] text-white text-sm font-semibold flex items-center justify-center gap-2"
                   >
                     <UserPlus size={18} />
                     {lobby.type === "LEAGUE" ? "Request as team" : "Request to join"}

@@ -31,14 +31,14 @@ function PlayerRow({
 }) {
   return (
     <div className="flex items-center gap-3 py-2">
-      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-sm font-bold">
+      <div className="w-10 h-10 rounded-full bg-[var(--bg-input)] flex items-center justify-center text-sm font-bold text-[var(--text-primary)]">
         {player.name.charAt(0)}
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <p className="font-medium truncate">{player.name}</p>
+          <p className="font-medium truncate text-[var(--text-primary)]">{player.name}</p>
           {showHostBadge && (
-            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--color-toxic)]/20 text-[var(--color-toxic)] font-medium">
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--color-primary)]/20 text-[var(--color-primary)] font-medium">
               Host
             </span>
           )}
@@ -53,14 +53,14 @@ function PlayerRow({
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={onAccept}
-            className="w-9 h-9 rounded-full bg-[var(--color-toxic)]/20 text-[var(--color-toxic)] flex items-center justify-center"
+            className="w-9 h-9 rounded-full bg-[var(--color-success)]/20 text-[var(--color-success)] flex items-center justify-center"
           >
             <Check size={18} />
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={onReject}
-            className="w-9 h-9 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center"
+            className="w-9 h-9 rounded-full bg-[var(--color-error)]/20 text-[var(--color-error)] flex items-center justify-center"
           >
             <X size={18} />
           </motion.button>
@@ -101,7 +101,7 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
     <div className="space-y-5">
       {/* Title & Time */}
       <div>
-        <h2 className="text-xl font-bold mb-1">{lobby.customTitle}</h2>
+        <h2 className="text-xl font-bold mb-1 text-[var(--text-primary)]">{lobby.customTitle}</h2>
         <p className="text-sm text-[var(--text-secondary)]">
           {formatDate(lobby.date)} @ {formatTime(lobby.time)}
         </p>
@@ -112,18 +112,18 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
         <p className="text-xs text-[var(--text-tertiary)] uppercase tracking-wider mb-2">Host</p>
         <div className="flex items-center gap-3">
           <div
-            className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold bg-gradient-to-br from-[var(--color-toxic)] to-[var(--bg-void)]"
+            className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-bold text-white bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)]"
           >
             {lobby.hostName.charAt(0)}
           </div>
           <div className="flex-1">
-            <p className="font-semibold">{lobby.hostName}</p>
+            <p className="font-semibold text-[var(--text-primary)]">{lobby.hostName}</p>
             {lobby.teamName && (
               <p className="text-sm text-[var(--tier-legend)]">{lobby.teamName}</p>
             )}
           </div>
           {!isHost && (
-            <button className="text-sm text-[var(--color-toxic)] font-medium flex items-center gap-1">
+            <button className="text-sm text-[var(--color-primary)] font-medium flex items-center gap-1">
               Contact <ExternalLink size={14} />
             </button>
           )}
@@ -134,14 +134,14 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
       <div className="space-y-3">
         {/* Date & Time */}
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-[var(--bg-input)] flex items-center justify-center flex-shrink-0">
             <Calendar size={18} className="text-[var(--text-secondary)]" />
           </div>
           <div className="flex-1">
-            <p className="font-medium">
+            <p className="font-medium text-[var(--text-primary)]">
               {formatDate(lobby.date)} • {formatTime(lobby.time)} • {lobby.duration} hour(s)
             </p>
-            <button className="text-sm text-[var(--text-secondary)] hover:text-[var(--color-toxic)] transition-colors flex items-center gap-1 mt-0.5">
+            <button className="text-sm text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors flex items-center gap-1 mt-0.5">
               Add to calendar <ExternalLink size={12} />
             </button>
           </div>
@@ -149,15 +149,15 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
 
         {/* Location */}
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-[var(--bg-input)] flex items-center justify-center flex-shrink-0">
             <MapPin size={18} className="text-[var(--text-secondary)]" />
           </div>
           <div className="flex-1">
-            <p className="font-medium">{lobby.locationName}</p>
+            <p className="font-medium text-[var(--text-primary)]">{lobby.locationName}</p>
             {lobby.locationAddress && (
               <p className="text-sm text-[var(--text-secondary)]">{lobby.locationAddress}</p>
             )}
-            <button className="text-sm text-[var(--text-secondary)] hover:text-[var(--color-toxic)] transition-colors flex items-center gap-1 mt-0.5">
+            <button className="text-sm text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors flex items-center gap-1 mt-0.5">
               Show in maps <ExternalLink size={12} />
             </button>
           </div>
@@ -165,13 +165,13 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
 
         {/* Match Type & Constraints */}
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-[var(--bg-input)] flex items-center justify-center flex-shrink-0">
             <Swords size={18} className="text-[var(--text-secondary)]" />
           </div>
           <div className="flex-1">
-            <p className="font-medium">
+            <p className="font-medium text-[var(--text-primary)]">
               <span className={cn(
-                lobby.type === "LEAGUE" ? "text-[var(--tier-legend)]" : "text-white"
+                lobby.type === "LEAGUE" ? "text-[var(--tier-legend)]" : "text-[var(--text-primary)]"
               )}>
                 {lobby.type}
               </span>
@@ -200,7 +200,7 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
       )}
 
       {/* Divider */}
-      <div className="border-t border-white/10" />
+      <div className="border-t border-[var(--border-light)]" />
 
       {/* Participants Section */}
       <div className="space-y-4">
@@ -212,7 +212,7 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
             </h3>
             <span className={cn(
               "text-xs font-bold",
-              confirmedCount >= maxPlayers ? "text-[var(--color-toxic)]" : "text-[var(--text-secondary)]"
+              confirmedCount >= maxPlayers ? "text-[var(--color-success)]" : "text-[var(--text-secondary)]"
             )}>
               {confirmedCount}/{maxPlayers}
             </span>
@@ -277,9 +277,9 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
                 {Array.from({ length: emptySlots }).map((_, i) => (
                   <div
                     key={`empty-${i}`}
-                    className="flex items-center gap-3 py-2 opacity-40"
+                    className="flex items-center gap-3 py-2 opacity-60"
                   >
-                    <div className="w-10 h-10 rounded-full border border-dashed border-white/20 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full border border-dashed border-[var(--border-medium)] flex items-center justify-center">
                       <User size={16} className="text-[var(--text-tertiary)]" />
                     </div>
                     <p className="text-sm text-[var(--text-tertiary)]">Open slot</p>
@@ -297,7 +297,7 @@ export function DetailsTab({ lobby, isHost, currentUserId, onAccept, onReject }:
               <h3 className="text-xs font-semibold text-[var(--text-tertiary)] uppercase tracking-wider">
                 Requested
               </h3>
-              <span className="text-xs font-bold text-[var(--color-toxic)]">
+              <span className="text-xs font-bold text-[var(--color-primary)]">
                 {lobby.requestedPlayers.length}
               </span>
             </div>

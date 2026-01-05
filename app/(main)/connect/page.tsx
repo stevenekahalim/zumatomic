@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { Filter, Plus } from "lucide-react"
+import { Plus, Swords, Trophy, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Lobby } from "@/types"
 import { motion, AnimatePresence } from "framer-motion"
@@ -11,32 +11,23 @@ import { LobbyDetailModal } from "@/components/connect/LobbyDetailModal"
 import { CreateLobbyModal } from "@/components/connect/CreateLobbyModal"
 import lobbiesData from "@/data/mock/lobbies.json"
 
-type ViewType = "open" | "past"
 type FilterType = "ALL" | "RANKED" | "LEAGUE"
 
 // Mock current user
 const CURRENT_USER_ID = "u001"
 
 export default function ConnectPage() {
-  const [activeView, setActiveView] = useState<ViewType>("open")
   const [typeFilter, setTypeFilter] = useState<FilterType>("ALL")
-  const [showFilter, setShowFilter] = useState(false)
   const [selectedLobby, setSelectedLobby] = useState<Lobby | null>(null)
   const [showCreateModal, setShowCreateModal] = useState(false)
 
   const [lobbies, setLobbies] = useState<Lobby[]>(lobbiesData as Lobby[])
 
-  // Separate open and past lobbies
-  const today = new Date().toISOString().split("T")[0]
-  const openLobbies = lobbies.filter((l) => l.status !== "FINISHED" && l.date >= today)
-  const pastLobbies = lobbies.filter((l) => l.status === "FINISHED" || l.date < today)
-
   // Apply type filter
   const filteredLobbies = useMemo(() => {
-    const baseLobbies = activeView === "open" ? openLobbies : pastLobbies
-    if (typeFilter === "ALL") return baseLobbies
-    return baseLobbies.filter((l) => l.type === typeFilter)
-  }, [activeView, typeFilter, openLobbies, pastLobbies])
+    if (typeFilter === "ALL") return lobbies
+    return lobbies.filter((l) => l.type === typeFilter)
+  }, [typeFilter, lobbies])
 
   // Group lobbies by date
   const groupedLobbies = useMemo(() => {
@@ -47,17 +38,15 @@ export default function ConnectPage() {
       }
       groups[lobby.date].push(lobby)
     })
-    // Sort by date (ascending for open, descending for past)
+    // Sort by date (ascending - upcoming first)
     const sortedDates = Object.keys(groups).sort((a, b) =>
-      activeView === "open"
-        ? new Date(a).getTime() - new Date(b).getTime()
-        : new Date(b).getTime() - new Date(a).getTime()
+      new Date(a).getTime() - new Date(b).getTime()
     )
     return sortedDates.map((date) => ({
       date,
       lobbies: groups[date].sort((a, b) => a.time.localeCompare(b.time)),
     }))
-  }, [filteredLobbies, activeView])
+  }, [filteredLobbies])
 
   const handleLobbyClick = (lobby: Lobby) => {
     setSelectedLobby(lobby)
@@ -114,97 +103,51 @@ export default function ConnectPage() {
           {/* Title Row */}
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="font-bold text-[20px]">Find Games</h1>
+              <h1 className="font-bold text-[20px] text-[var(--text-primary)]">Find Games</h1>
               <p className="text-[13px] text-[var(--text-secondary)]">
                 Join a lobby or create your own
               </p>
             </div>
           </div>
 
-          {/* Toggle + Filter Row */}
-          <div className="flex items-center justify-between">
-            {/* Open/Past Toggle */}
-            <div className="flex gap-2 p-1 glass-card rounded-xl">
-              <button
-                onClick={() => setActiveView("open")}
-                className={cn(
-                  "h-9 px-4 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
-                  activeView === "open"
-                    ? "bg-[var(--color-toxic)] text-black"
-                    : "text-[var(--text-secondary)] hover:text-white"
-                )}
-              >
-                Open
-                <span className={cn(
-                  "text-xs font-bold",
-                  activeView === "open" ? "text-black/60" : "text-[var(--text-tertiary)]"
-                )}>
-                  {openLobbies.length}
-                </span>
-              </button>
-              <button
-                onClick={() => setActiveView("past")}
-                className={cn(
-                  "h-9 px-4 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
-                  activeView === "past"
-                    ? "bg-[var(--color-toxic)] text-black"
-                    : "text-[var(--text-secondary)] hover:text-white"
-                )}
-              >
-                Past
-                <span className={cn(
-                  "text-xs font-bold",
-                  activeView === "past" ? "text-black/60" : "text-[var(--text-tertiary)]"
-                )}>
-                  {pastLobbies.length}
-                </span>
-              </button>
-            </div>
-
-            {/* Filter Button */}
+          {/* Filter Tabs: All / Ranked / League */}
+          <div className="flex gap-2 p-1 glass-card rounded-xl">
             <button
-              onClick={() => setShowFilter(!showFilter)}
+              onClick={() => setTypeFilter("ALL")}
               className={cn(
-                "h-9 w-9 rounded-xl flex items-center justify-center transition-colors",
-                showFilter || typeFilter !== "ALL"
-                  ? "bg-[var(--color-toxic)]/20 text-[var(--color-toxic)]"
-                  : "glass-card text-[var(--text-secondary)]"
+                "flex-1 h-9 px-4 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
+                typeFilter === "ALL"
+                  ? "bg-[var(--color-primary)] text-white"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               )}
             >
-              <Filter size={18} />
+              All
+            </button>
+            <button
+              onClick={() => setTypeFilter("RANKED")}
+              className={cn(
+                "flex-1 h-9 px-4 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
+                typeFilter === "RANKED"
+                  ? "bg-[var(--color-primary)] text-white"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              )}
+            >
+              <Swords size={14} />
+              Ranked
+            </button>
+            <button
+              onClick={() => setTypeFilter("LEAGUE")}
+              className={cn(
+                "flex-1 h-9 px-4 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
+                typeFilter === "LEAGUE"
+                  ? "bg-[var(--tier-legend)] text-black"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              )}
+            >
+              <Trophy size={14} />
+              League
             </button>
           </div>
-
-          {/* Filter Dropdown */}
-          <AnimatePresence>
-            {showFilter && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden"
-              >
-                <div className="flex gap-2 mt-3">
-                  {(["ALL", "RANKED", "LEAGUE"] as FilterType[]).map((filter) => (
-                    <button
-                      key={filter}
-                      onClick={() => setTypeFilter(filter)}
-                      className={cn(
-                        "flex-1 h-9 rounded-lg text-sm font-medium transition-all",
-                        typeFilter === filter
-                          ? filter === "LEAGUE"
-                            ? "bg-[var(--tier-legend)] text-black"
-                            : "bg-[var(--color-toxic)] text-black"
-                          : "glass-card text-[var(--text-secondary)]"
-                      )}
-                    >
-                      {filter === "ALL" ? "All Types" : filter}
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </div>
 
@@ -222,14 +165,14 @@ export default function ConnectPage() {
               exit={{ opacity: 0 }}
               className="text-center py-16"
             >
-              <div className="w-16 h-16 rounded-2xl bg-white/5 mx-auto mb-4 flex items-center justify-center">
-                <Filter size={24} className="text-[var(--text-tertiary)]" />
+              <div className="w-16 h-16 rounded-2xl bg-[var(--bg-input)] mx-auto mb-4 flex items-center justify-center">
+                <Search size={24} className="text-[var(--text-tertiary)]" />
               </div>
-              <h3 className="font-semibold text-lg mb-1">No lobbies found</h3>
+              <h3 className="font-semibold text-lg mb-1 text-[var(--text-primary)]">No lobbies found</h3>
               <p className="text-sm text-[var(--text-secondary)]">
-                {activeView === "open"
+                {typeFilter === "ALL"
                   ? "Be the first to create a lobby!"
-                  : "No past lobbies to show."
+                  : `No ${typeFilter.toLowerCase()} lobbies available.`
                 }
               </p>
             </motion.div>
@@ -274,7 +217,7 @@ export default function ConnectPage() {
         animate={{ scale: 1 }}
         transition={{ type: "spring", delay: 0.3 }}
         onClick={() => setShowCreateModal(true)}
-        className="fixed right-5 bottom-[calc(var(--nav-height)+24px)] w-14 h-14 rounded-full bg-[var(--color-toxic)] text-black shadow-lg flex items-center justify-center z-40"
+        className="fixed right-5 bottom-[calc(var(--nav-height)+24px)] w-14 h-14 rounded-full bg-[var(--color-primary)] text-white shadow-lg flex items-center justify-center z-40"
       >
         <Plus size={24} strokeWidth={2.5} />
       </motion.button>

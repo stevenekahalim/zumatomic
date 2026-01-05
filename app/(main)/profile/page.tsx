@@ -1,17 +1,16 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import {
-  Settings, ChevronRight, TrendingUp, TrendingDown,
-  Trophy, Flame, Users, Target, Percent, Edit3,
-  Hand, MapPin, Sun, Swords, Calendar, Clock,
-  Star, UserPlus, UserCheck
+  ChevronRight, TrendingUp, TrendingDown,
+  Trophy, Flame, Hand, MapPin, Sun, Swords
 } from "lucide-react"
 import { TierBadge } from "@/components/leaderboard/TierBadge"
 import { AchievementsSection } from "@/components/profile/AchievementsSection"
+import { MatchResultCard, MatchResultData } from "@/components/shared/MatchResultCard"
 import { BadgeName } from "@/lib/constants"
 import teamsData from "@/data/mock/teams.json"
+import matchesData from "@/data/mock/matches.json"
 import { Team } from "@/types"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -64,45 +63,8 @@ const mmrHistoryData = [
   { date: "Jan 3", mmr: 4.25 },
 ]
 
-// Mock recent matches
-const mockRecentMatches = [
-  {
-    id: "m1",
-    date: "3 Jan 2025",
-    time: "19:00",
-    teamA: ["Andi W", "Budi S"],
-    teamB: ["Citra D", "Deni P"],
-    score: "6-4",
-    won: true,
-  },
-  {
-    id: "m2",
-    date: "1 Jan 2025",
-    time: "10:00",
-    teamA: ["Andi W", "Eka F"],
-    teamB: ["Fajar G", "Gilang H"],
-    score: "6-3",
-    won: true,
-  },
-  {
-    id: "m3",
-    date: "28 Dec 2024",
-    time: "16:00",
-    teamA: ["Andi W", "Hendra I"],
-    teamB: ["Ivan J", "Joko K"],
-    score: "4-6",
-    won: false,
-  },
-  {
-    id: "m4",
-    date: "25 Dec 2024",
-    time: "09:00",
-    teamA: ["Andi W", "Budi S"],
-    teamB: ["Kevin L", "Leo M"],
-    score: "6-2",
-    won: true,
-  },
-]
+// Get recent matches from mock data
+const recentMatches = (matchesData as MatchResultData[]).slice(0, 4)
 
 // Mock user achievements (badges unlocked)
 const mockUserAchievements: { badge: BadgeName; unlockedAt: string }[] = [
@@ -164,16 +126,6 @@ export default function ProfilePage() {
         className="relative overflow-hidden pt-6 pb-8"
         style={{ paddingLeft: 'var(--page-padding)', paddingRight: 'var(--page-padding)' }}
       >
-        {/* Settings button */}
-        <div className="absolute top-4 right-4">
-          <Link
-            href="/settings"
-            className="w-10 h-10 rounded-xl glass-card flex items-center justify-center"
-          >
-            <Settings size={20} className="text-[var(--text-secondary)]" />
-          </Link>
-        </div>
-
         {/* Avatar + Name + Location (Centered) */}
         <div className="flex flex-col items-center mb-6">
           <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--tier-mythic)] to-[var(--tier-legend)] flex items-center justify-center text-2xl font-bold shadow-lg mb-3">
@@ -202,17 +154,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-3 max-w-sm mx-auto">
-          <button className="flex-1 h-11 bg-[var(--color-toxic)] text-black font-semibold rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
-            <Star size={18} />
-            Zuma Pro
-          </button>
-          <button className="flex-1 h-11 glass-card border border-white/20 text-white font-medium rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
-            <Edit3 size={18} />
-            Edit Profile
-          </button>
-        </div>
       </motion.div>
 
       <div
@@ -440,79 +381,13 @@ export default function ProfilePage() {
               View All
             </Link>
           </div>
-          <div className="space-y-2">
-            {mockRecentMatches.map((match) => (
-              <Link key={match.id} href={`/match/${match.id}`}>
-                <div className="glass-card rounded-xl p-4 relative overflow-hidden">
-                  {/* Outcome Indicator Bar */}
-                  <div className={cn(
-                    "absolute left-0 top-0 bottom-0 w-1 rounded-l-xl",
-                    match.won ? "bg-green-500" : "bg-red-500"
-                  )} />
-
-                  <div className="flex items-center gap-4 pl-2">
-                    {/* Date & Time */}
-                    <div className="text-xs text-[var(--text-secondary)] w-16">
-                      <p className="flex items-center gap-1">
-                        <Calendar size={10} />
-                        {match.date.split(" ")[0]} {match.date.split(" ")[1]}
-                      </p>
-                      <p className="flex items-center gap-1">
-                        <Clock size={10} />
-                        {match.time}
-                      </p>
-                    </div>
-
-                    {/* VS Layout */}
-                    <div className="flex-1 flex items-center justify-center gap-3">
-                      {/* Team A */}
-                      <div className="flex -space-x-2">
-                        {match.teamA.map((player, i) => (
-                          <div
-                            key={i}
-                            className={cn(
-                              "w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium border-2 border-[var(--bg-void)]",
-                              match.won ? "bg-green-500/20 text-green-400" : "bg-white/10 text-white"
-                            )}
-                          >
-                            {player.charAt(0)}
-                          </div>
-                        ))}
-                      </div>
-
-                      <span className="text-xs text-[var(--text-tertiary)]">vs</span>
-
-                      {/* Team B */}
-                      <div className="flex -space-x-2">
-                        {match.teamB.map((player, i) => (
-                          <div
-                            key={i}
-                            className={cn(
-                              "w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium border-2 border-[var(--bg-void)]",
-                              !match.won ? "bg-green-500/20 text-green-400" : "bg-white/10 text-white"
-                            )}
-                          >
-                            {player.charAt(0)}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Score */}
-                    <div className="text-right">
-                      <p className={cn(
-                        "text-lg font-mono font-bold",
-                        match.won ? "text-green-400" : "text-red-400"
-                      )}>
-                        {match.score}
-                      </p>
-                      <p className="text-[10px] text-[var(--text-tertiary)] uppercase">
-                        {match.won ? "Victory" : "Defeat"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+          <div className="space-y-3">
+            {recentMatches.map((match) => (
+              <MatchResultCard
+                key={match.id}
+                match={match}
+                onClick={() => console.log("Match clicked:", match.id)}
+              />
             ))}
           </div>
         </motion.div>

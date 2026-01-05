@@ -1,0 +1,133 @@
+[
+  {
+    "id": "match-001",
+    "date": "2026-01-05",
+    "time": "19:00",
+    "type": "LEAGUE",
+    "venue": "PALAS Tennis Club",
+    "teamA": {
+      "name": "Duo Maut",
+      "players": [
+        { "id": "u001", "name": "Andi Wijaya", "mmr": 4.25 },
+        { "id": "u002", "name": "Budi Santoso", "mmr": 4.10 }
+      ]
+    },
+    "teamB": {
+      "name": "Padel Bros",
+      "players": [
+        { "id": "u007", "name": "Gita Hartono", "mmr": 3.90 },
+        { "id": "u008", "name": "Hadi Susanto", "mmr": 3.70 }
+      ]
+    },
+    "sets": [
+      { "scoreA": 6, "scoreB": 4 },
+      { "scoreA": 4, "scoreB": 6 },
+      { "scoreA": 6, "scoreB": 3 }
+    ],
+    "winner": "A"
+  },
+  {
+    "id": "match-002",
+    "date": "2026-01-05",
+    "time": "17:00",
+    "type": "LEAGUE",
+    "venue": "Senayan Sports Center",
+    "teamA": {
+      "name": "Net Masters",
+      "players": [
+        { "id": "u009", "name": "Indra Kusuma", "mmr": 4.35 },
+        { "id": "u010", "name": "Joko Widodo", "mmr": 4.00 }
+      ]
+    },
+    "teamB": {
+      "name": "Glass Wall FC",
+      "players": [
+        { "id": "u011", "name": "Kevin Sanjaya", "mmr": 4.50 },
+        { "id": "u012", "name": "Leo Agung", "mmr": 4.20 }
+      ]
+    },
+    "sets": [
+      { "scoreA": 5, "scoreB": 7 },
+      { "scoreA": 4, "scoreB": 6 },
+      { "scoreA": null, "scoreB": null }
+    ],
+    "winner": "B"
+  },
+  {
+    "id": "match-003",
+    "date": "2026-01-05",
+    "time": "14:00",
+    "type": "RANKED",
+    "venue": "PIK Avenue Courts",
+    "teamA": {
+      "players": [
+        { "id": "u003", "name": "Citra Dewi", "mmr": 3.95 },
+        { "id": "u004", "name": "Deni Pratama", "mmr": 3.80 }
+      ]
+    },
+    "teamB": {
+      "players": [
+        { "id": "u005", "name": "Eka Fitriani", "mmr": 3.65 },
+        { "id": "u006", "name": "Fajar Gunawan", "mmr": 3.50 }
+      ]
+    },
+    "sets": [
+      { "scoreA": 6, "scoreB": 4 },
+      { "scoreA": 6, "scoreB": 3 },
+      { "scoreA": null, "scoreB": null }
+    ],
+    "winner": "A"
+  },
+  {
+    "id": "match-004",
+    "date": "2026-01-04",
+    "time": "20:00",
+    "type": "RANKED",
+    "venue": "Gelora Bung Karno",
+    "teamA": {
+      "players": [
+        { "id": "u001", "name": "Andi Wijaya", "mmr": 4.25 },
+        { "id": "u003", "name": "Citra Dewi", "mmr": 3.95 }
+      ]
+    },
+    "teamB": {
+      "players": [
+        { "id": "u002", "name": "Budi Santoso", "mmr": 4.10 },
+        { "id": "u004", "name": "Deni Pratama", "mmr": 3.80 }
+      ]
+    },
+    "sets": [
+      { "scoreA": 4, "scoreB": 6 },
+      { "scoreA": 6, "scoreB": 4 },
+      { "scoreA": 3, "scoreB": 6 }
+    ],
+    "winner": "B"
+  },
+  {
+    "id": "match-005",
+    "date": "2026-01-04",
+    "time": "18:00",
+    "type": "LEAGUE",
+    "venue": "Jalan KH Abdul Wahab Siamin",
+    "teamA": {
+      "name": "Thunder Duo",
+      "players": [
+        { "id": "u001", "name": "Andi Wijaya", "mmr": 4.25 },
+        { "id": "u009", "name": "Indra Kusuma", "mmr": 4.35 }
+      ]
+    },
+    "teamB": {
+      "name": "Smash Kings",
+      "players": [
+        { "id": "u013", "name": "Mario Pratama", "mmr": 4.15 },
+        { "id": "u014", "name": "Niko Saputra", "mmr": 4.05 }
+      ]
+    },
+    "sets": [
+      { "scoreA": 6, "scoreB": 2 },
+      { "scoreA": 6, "scoreB": 1 },
+      { "scoreA": null, "scoreB": null }
+    ],
+    "winner": "A"
+  }
+]
