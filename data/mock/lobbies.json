@@ -1,0 +1,182 @@
+[
+  {
+    "id": "lobby-001",
+    "type": "RANKED",
+    "customTitle": "Ada yang mau PLAYTOMIC?",
+    "hostId": "u001",
+    "hostName": "Andi Wijaya",
+    "hostPhone": "6281234567890",
+    "date": "2026-01-05",
+    "time": "20:00",
+    "duration": 2,
+    "locationType": "VENUE",
+    "locationName": "Jalan KH Abdul Wahab Siamin",
+    "locationAddress": "Jakarta Barat",
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u001", "name": "Andi Wijaya", "mmr": 4.25, "team": "A" },
+      { "id": "u002", "name": "Budi Santoso", "mmr": 4.10, "team": "A" },
+      { "id": "u003", "name": "Citra Dewi", "mmr": 3.95, "team": "B" }
+    ],
+    "requestedPlayers": [
+      { "id": "u004", "name": "Deni Pratama", "mmr": 3.80 }
+    ],
+    "status": "OPEN",
+    "notes": "Best of three. STAR POINT SYSTEM.",
+    "createdAt": "2026-01-05T10:00:00Z"
+  },
+  {
+    "id": "lobby-002",
+    "type": "LEAGUE",
+    "customTitle": "Official match cari lawan LEGEND tier",
+    "hostId": "u001",
+    "hostName": "Andi Wijaya",
+    "hostPhone": "6281234567890",
+    "teamId": "team-001",
+    "teamName": "Duo Maut",
+    "date": "2026-01-05",
+    "time": "16:00",
+    "duration": 2,
+    "locationType": "FLEXIBLE",
+    "locationName": "Jakarta Barat - Flexible",
+    "minMmr": 3.5,
+    "maxMmr": 4.5,
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u001", "name": "Andi Wijaya", "mmr": 4.25, "team": "A" },
+      { "id": "u002", "name": "Budi Santoso", "mmr": 4.10, "team": "A" }
+    ],
+    "requestedPlayers": [
+      { "id": "u005", "name": "Eka Fitriani", "mmr": 3.65 },
+      { "id": "u006", "name": "Fajar Gunawan", "mmr": 3.50 }
+    ],
+    "status": "OPEN",
+    "notes": "Looking for competitive teams only. Bo3 format.",
+    "createdAt": "2026-01-05T08:00:00Z"
+  },
+  {
+    "id": "lobby-003",
+    "type": "RANKED",
+    "customTitle": "Sparring malam ini siapa mau?",
+    "hostId": "u003",
+    "hostName": "Citra Dewi",
+    "hostPhone": "6281345678901",
+    "date": "2026-01-05",
+    "time": "21:00",
+    "duration": 1,
+    "locationType": "VENUE",
+    "locationName": "PALAS Tennis Club",
+    "locationAddress": "Jakarta Pusat",
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u003", "name": "Citra Dewi", "mmr": 3.95, "team": "A" },
+      { "id": "u004", "name": "Deni Pratama", "mmr": 3.80, "team": "A" },
+      { "id": "u005", "name": "Eka Fitriani", "mmr": 3.65, "team": "B" },
+      { "id": "u006", "name": "Fajar Gunawan", "mmr": 3.50, "team": "B" }
+    ],
+    "requestedPlayers": [],
+    "status": "FULL",
+    "notes": "Friendly match, no pressure!",
+    "createdAt": "2026-01-05T12:00:00Z"
+  },
+  {
+    "id": "lobby-004",
+    "type": "RANKED",
+    "customTitle": "Morning session EPIC tier welcome",
+    "hostId": "u004",
+    "hostName": "Deni Pratama",
+    "hostPhone": "6281456789012",
+    "date": "2026-01-06",
+    "time": "07:00",
+    "duration": 2,
+    "locationType": "VENUE",
+    "locationName": "Gelora Bung Karno",
+    "locationAddress": "Jakarta Pusat",
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u004", "name": "Deni Pratama", "mmr": 3.80, "team": "A" }
+    ],
+    "requestedPlayers": [],
+    "status": "OPEN",
+    "notes": "Looking for 3 more players. Any skill level welcome!",
+    "createdAt": "2026-01-05T18:00:00Z"
+  },
+  {
+    "id": "lobby-005",
+    "type": "LEAGUE",
+    "customTitle": "Weekend scrim! Tim mana yang berani?",
+    "hostId": "u002",
+    "hostName": "Budi Santoso",
+    "hostPhone": "6281567890123",
+    "teamId": "team-005",
+    "teamName": "Padel Bros",
+    "date": "2026-01-06",
+    "time": "09:00",
+    "duration": 3,
+    "locationType": "VENUE",
+    "locationName": "Senayan Sports Center",
+    "locationAddress": "Jakarta Selatan",
+    "minMmr": 3.0,
+    "maxMmr": 5.0,
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u002", "name": "Budi Santoso", "mmr": 4.10, "team": "A" },
+      { "id": "u007", "name": "Gita Hartono", "mmr": 3.90, "team": "A" }
+    ],
+    "requestedPlayers": [
+      { "id": "u008", "name": "Hadi Susanto", "mmr": 3.70 }
+    ],
+    "status": "OPEN",
+    "notes": "Bo5 if we have time. Bring your A game!",
+    "createdAt": "2026-01-05T15:00:00Z"
+  },
+  {
+    "id": "lobby-006",
+    "type": "RANKED",
+    "customTitle": "Afternoon friendly doubles",
+    "hostId": "u005",
+    "hostName": "Eka Fitriani",
+    "hostPhone": "6281678901234",
+    "date": "2026-01-06",
+    "time": "15:00",
+    "duration": 2,
+    "locationType": "FLEXIBLE",
+    "locationName": "Jakarta Selatan - TBD",
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u005", "name": "Eka Fitriani", "mmr": 3.65, "team": "A" },
+      { "id": "u006", "name": "Fajar Gunawan", "mmr": 3.50, "team": "A" }
+    ],
+    "requestedPlayers": [],
+    "status": "OPEN",
+    "notes": "Chill session. All skill levels welcome.",
+    "createdAt": "2026-01-05T20:00:00Z"
+  },
+  {
+    "id": "lobby-007",
+    "type": "LEAGUE",
+    "customTitle": "MYTHIC tier challenge - berani?",
+    "hostId": "u001",
+    "hostName": "Andi Wijaya",
+    "hostPhone": "6281234567890",
+    "teamId": "team-002",
+    "teamName": "Thunder Duo",
+    "date": "2026-01-07",
+    "time": "19:00",
+    "duration": 2,
+    "locationType": "VENUE",
+    "locationName": "PIK Avenue Courts",
+    "locationAddress": "Jakarta Utara",
+    "minMmr": 4.0,
+    "maxMmr": 5.0,
+    "maxPlayers": 4,
+    "confirmedPlayers": [
+      { "id": "u001", "name": "Andi Wijaya", "mmr": 4.25, "team": "A" },
+      { "id": "u009", "name": "Indra Kusuma", "mmr": 4.35, "team": "A" }
+    ],
+    "requestedPlayers": [],
+    "status": "OPEN",
+    "notes": "High-level competitive match. MYTHIC teams only.",
+    "createdAt": "2026-01-05T22:00:00Z"
+  }
+]

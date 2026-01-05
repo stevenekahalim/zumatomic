@@ -3,17 +3,18 @@
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Home, Trophy, Zap, MessageSquare, User } from "lucide-react"
+import { Home, Search, Zap, Trophy, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
-import { PlayActionSheet } from "@/components/play/PlayActionSheet"
+import { RecordActionSheet } from "@/components/play/RecordActionSheet"
 
+// New 5-Slot Dock: HOME | FIND GAMES | [RECORD] | LEAGUE | PROFILE
 const navItems = [
   { label: "Home", href: "/", icon: Home },
+  { label: "Find Games", href: "/connect", icon: Search },
+  // RECORD is handled separately as center FAB
   { label: "League", href: "/league", icon: Trophy },
-  // PLAY is handled separately as FAB
-  { label: "Lobby", href: "/lobby", icon: MessageSquare },
-  { label: "Career", href: "/career", icon: User },
+  { label: "Profile", href: "/profile", icon: User },
 ]
 
 export function BottomNav() {
@@ -36,7 +37,7 @@ export function BottomNav() {
           className="relative h-full flex items-center justify-around max-w-[var(--content-max-width)] mx-auto"
           style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
         >
-          {/* Left side nav items (Home, League) */}
+          {/* Left side nav items (Home, Connect) */}
           {navItems.slice(0, 2).map((item) => {
             const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
             const Icon = item.icon
@@ -75,7 +76,7 @@ export function BottomNav() {
             )
           })}
 
-          {/* Center PLAY FAB Button */}
+          {/* Center RECORD FAB Button */}
           <div className="relative flex items-center justify-center min-w-[72px]">
             <motion.button
               onClick={() => setIsPlayOpen(true)}
@@ -104,11 +105,11 @@ export function BottomNav() {
               <Zap size={26} strokeWidth={2.5} className="relative z-10" />
             </motion.button>
             <span className="absolute -bottom-0.5 text-[10px] font-semibold text-[var(--color-toxic)]">
-              Play
+              Record
             </span>
           </div>
 
-          {/* Right side nav items (Lobby, Career) */}
+          {/* Right side nav items (League, Profile) */}
           {navItems.slice(2).map((item) => {
             const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
             const Icon = item.icon
@@ -149,8 +150,8 @@ export function BottomNav() {
         </div>
       </nav>
 
-      {/* PLAY Action Sheet */}
-      <PlayActionSheet isOpen={isPlayOpen} onClose={() => setIsPlayOpen(false)} />
+      {/* RECORD Action Sheet */}
+      <RecordActionSheet isOpen={isPlayOpen} onClose={() => setIsPlayOpen(false)} />
     </>
   )
 }

@@ -72,6 +72,65 @@ export interface LeaderboardEntry extends Team {
   winRate: number
 }
 
+// Lobby System (Reclub-style)
+export interface LobbyPlayer {
+  id: string
+  name: string
+  avatar?: string
+  mmr: number
+  team?: "A" | "B"  // Team assignment within the lobby
+}
+
+export interface Lobby {
+  id: string
+  type: "RANKED" | "LEAGUE"
+  customTitle: string
+
+  // Host
+  hostId: string
+  hostName: string
+  hostAvatar?: string
+  hostPhone?: string     // For WhatsApp link
+  teamId?: string        // For league lobbies
+  teamName?: string
+
+  // Schedule
+  date: string           // "2026-01-05"
+  time: string           // "20:00"
+  duration: number       // Hours (1, 2, 3)
+
+  // Location
+  locationType: "VENUE" | "FLEXIBLE"
+  locationName: string   // Venue name or area
+  locationAddress?: string
+
+  // Constraints
+  minMmr?: number
+  maxMmr?: number
+
+  // Roster
+  maxPlayers: number     // Usually 4
+  confirmedPlayers: LobbyPlayer[]
+  requestedPlayers: LobbyPlayer[]
+
+  // Status
+  status: "OPEN" | "FULL" | "FINISHED"
+
+  // Meta
+  notes: string
+  createdAt: string
+}
+
+export interface LobbyMessage {
+  id: string
+  lobbyId: string
+  userId: string
+  userName: string
+  userAvatar?: string
+  content: string
+  createdAt: string
+}
+
 // API Response types (for future backend integration)
 export interface ApiResponse<T> {
   data: T

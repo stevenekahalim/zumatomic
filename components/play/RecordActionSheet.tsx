@@ -2,47 +2,47 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useRouter } from "next/navigation"
-import { X, Zap, Megaphone } from "lucide-react"
+import { X, Zap, Trophy } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { SparringFormModal } from "@/components/match/SparringFormModal"
+import { RankedMatchModal } from "@/components/match/RankedMatchModal"
+import { LeagueMatchModal } from "@/components/match/LeagueMatchModal"
 
-interface PlayActionSheetProps {
+interface RecordActionSheetProps {
   isOpen: boolean
   onClose: () => void
 }
 
-export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
-  const router = useRouter()
-  const [showSparringForm, setShowSparringForm] = useState(false)
+export function RecordActionSheet({ isOpen, onClose }: RecordActionSheetProps) {
+  const [showRankedForm, setShowRankedForm] = useState(false)
+  const [showLeagueForm, setShowLeagueForm] = useState(false)
 
-  const handleSparringClick = () => {
+  const handleRankedClick = () => {
     onClose()
     // Small delay to allow sheet to close before opening modal
-    setTimeout(() => setShowSparringForm(true), 200)
+    setTimeout(() => setShowRankedForm(true), 200)
   }
 
-  const handleNavigation = (href: string) => {
+  const handleLeagueClick = () => {
     onClose()
-    router.push(href)
+    setTimeout(() => setShowLeagueForm(true), 200)
   }
 
-  const playActions = [
+  const recordActions = [
     {
-      id: "sparring",
-      label: "Input Skor Sparring",
-      description: "Casual match - Update MMR only",
+      id: "ranked",
+      label: "Upload Ranked Match",
+      description: "4 Players - Update MMR only",
       icon: Zap,
       color: "var(--color-toxic)",
-      onClick: handleSparringClick,
+      onClick: handleRankedClick,
     },
     {
-      id: "broadcast",
-      label: "Broadcast LFO",
-      description: "Cari lawan tanding",
-      icon: Megaphone,
+      id: "league",
+      label: "Upload League Match",
+      description: "Team vs Team - Update LP + MMR",
+      icon: Trophy,
       color: "var(--tier-legend)",
-      href: "/play/broadcast",
+      onClick: handleLeagueClick,
     },
   ]
 
@@ -77,8 +77,8 @@ export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
               {/* Header */}
               <div className="flex items-center justify-between px-6 pb-4">
                 <div>
-                  <h2 className="text-xl font-bold text-white">Play</h2>
-                  <p className="text-sm text-[var(--text-secondary)]">Pilih aksi</p>
+                  <h2 className="text-xl font-bold text-white">Record Match</h2>
+                  <p className="text-sm text-[var(--text-secondary)]">Upload your match score</p>
                 </div>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
@@ -91,7 +91,7 @@ export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
 
               {/* Action Cards */}
               <div className="px-4 pb-6 space-y-3">
-                {playActions.map((action, index) => {
+                {recordActions.map((action, index) => {
                   const Icon = action.icon
                   return (
                     <motion.button
@@ -100,7 +100,7 @@ export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => action.onClick ? action.onClick() : handleNavigation(action.href!)}
+                      onClick={action.onClick}
                       className={cn(
                         "w-full flex items-center gap-4 p-4 rounded-2xl",
                         "glass-card hover:bg-white/10 transition-all",
@@ -140,7 +140,7 @@ export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
               {/* Hint */}
               <div className="px-6 pb-8">
                 <p className="text-center text-xs text-[var(--text-tertiary)]">
-                  Untuk match liga official, gunakan menu di tab League
+                  Ranked = 4 individual players | League = Team vs Team
                 </p>
               </div>
             </motion.div>
@@ -148,10 +148,16 @@ export function PlayActionSheet({ isOpen, onClose }: PlayActionSheetProps) {
         )}
       </AnimatePresence>
 
-      {/* Sparring Form Modal */}
-      <SparringFormModal
-        isOpen={showSparringForm}
-        onClose={() => setShowSparringForm(false)}
+      {/* Ranked Match Modal (4 players) */}
+      <RankedMatchModal
+        isOpen={showRankedForm}
+        onClose={() => setShowRankedForm(false)}
+      />
+
+      {/* League Match Modal (Team vs Team) */}
+      <LeagueMatchModal
+        isOpen={showLeagueForm}
+        onClose={() => setShowLeagueForm(false)}
       />
     </>
   )

@@ -65,10 +65,10 @@ export default function BroadcastPage() {
           </motion.div>
           <h2 className="text-xl font-bold mb-2">Broadcast Terkirim!</h2>
           <p className="text-[var(--text-secondary)] mb-6">
-            LFO kamu sudah masuk ke Match Market
+            LFO kamu sudah masuk ke Ranked Marketplace
           </p>
-          <RippleButton onClick={() => router.push("/lobby")}>
-            Lihat di Lobby
+          <RippleButton onClick={() => router.push("/connect")}>
+            View in Connect Hub
           </RippleButton>
         </motion.div>
       </div>
@@ -200,7 +200,7 @@ export default function BroadcastPage() {
             disabled={!location || !time}
             leftIcon={<Send size={20} />}
           >
-            Broadcast ke Lobby
+            Broadcast to Ranked
           </RippleButton>
         </div>
       </div>

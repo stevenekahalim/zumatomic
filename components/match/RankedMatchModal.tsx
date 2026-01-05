@@ -18,12 +18,12 @@ const mockPlayers = [
   { id: "u008", name: "Hendra Irawan", mmr: 3.90 },
 ]
 
-interface SparringFormModalProps {
+interface RankedMatchModalProps {
   isOpen: boolean
   onClose: () => void
 }
 
-export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
+export function RankedMatchModal({ isOpen, onClose }: RankedMatchModalProps) {
   const [selectedPlayers, setSelectedPlayers] = useState<(typeof mockPlayers[0] | null)[]>([
     mockPlayers[0], // Default current user
     null,
@@ -31,10 +31,49 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
     null,
   ])
   const [activeSlot, setActiveSlot] = useState<number | null>(null)
-  const [scoreA, setScoreA] = useState("")
-  const [scoreB, setScoreB] = useState("")
+  const [sets, setSets] = useState<Array<{ teamA: string; teamB: string }>>([
+    { teamA: "", teamB: "" }, // Set 1
+    { teamA: "", teamB: "" }, // Set 2
+    { teamA: "", teamB: "" }, // Set 3 (optional)
+  ])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+
+  // Best-of-3 helper functions
+  const updateSet = (setIndex: number, team: "teamA" | "teamB", value: string) => {
+    const newSets = [...sets]
+    newSets[setIndex][team] = value
+    setSets(newSets)
+  }
+
+  const getSetWinner = (setIndex: number): "A" | "B" | null => {
+    const a = parseInt(sets[setIndex].teamA) || 0
+    const b = parseInt(sets[setIndex].teamB) || 0
+    if (a === 0 && b === 0) return null
+    if (a === b) return null
+    return a > b ? "A" : "B"
+  }
+
+  const needsThirdSet = (): boolean => {
+    const set1Winner = getSetWinner(0)
+    const set2Winner = getSetWinner(1)
+    return set1Winner !== null && set2Winner !== null && set1Winner !== set2Winner
+  }
+
+  const getMatchResult = (): { winner: "A" | "B"; score: string } | null => {
+    let teamASets = 0
+    let teamBSets = 0
+
+    sets.forEach((_, i) => {
+      const winner = getSetWinner(i)
+      if (winner === "A") teamASets++
+      if (winner === "B") teamBSets++
+    })
+
+    if (teamASets >= 2) return { winner: "A", score: `${teamASets}-${teamBSets}` }
+    if (teamBSets >= 2) return { winner: "B", score: `${teamBSets}-${teamASets}` }
+    return null
+  }
 
   const handleSelectPlayer = (player: typeof mockPlayers[0]) => {
     if (activeSlot === null) return
@@ -55,15 +94,17 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
       setIsSuccess(false)
       // Reset form
       setSelectedPlayers([mockPlayers[0], null, null, null])
-      setScoreA("")
-      setScoreB("")
+      setSets([
+        { teamA: "", teamB: "" },
+        { teamA: "", teamB: "" },
+        { teamA: "", teamB: "" },
+      ])
     }, 2000)
   }
 
+  const matchResult = getMatchResult()
   const isFormValid =
-    selectedPlayers.every((p) => p !== null) &&
-    scoreA !== "" &&
-    scoreB !== ""
+    selectedPlayers.every((p) => p !== null) && matchResult !== null
 
   const availablePlayers = mockPlayers.filter(
     (p) => !selectedPlayers.some((sp) => sp?.id === p.id)
@@ -113,9 +154,9 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
                 >
                   <Check size={40} className="text-[var(--color-toxic)]" />
                 </motion.div>
-                <h2 className="text-xl font-bold mb-2">Skor Tercatat!</h2>
+                <h2 className="text-xl font-bold mb-2">Ranked Match Recorded!</h2>
                 <p className="text-[var(--text-secondary)]">
-                  Individual MMR akan diupdate
+                  Individual MMR will be updated
                 </p>
               </motion.div>
             ) : (
@@ -125,10 +166,10 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
                   <div>
                     <h2 className="text-xl font-bold flex items-center gap-2">
                       <Zap size={24} className="text-[var(--color-toxic)]" />
-                      Input Skor Sparring
+                      Input Skor Ranked
                     </h2>
                     <p className="text-sm text-[var(--text-secondary)]">
-                      Casual match - Update MMR only
+                      4 Players - Update MMR only
                     </p>
                   </div>
                   <button
@@ -283,38 +324,82 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
                   )}
                 </AnimatePresence>
 
-                {/* Score Input */}
+                {/* Score Input - Best of 3 */}
                 <div className="mb-6">
                   <p className="text-sm text-zinc-400 uppercase tracking-wider font-semibold mb-3">
-                    Skor
+                    Skor (Best of 3)
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="flex-1">
-                      <label className="text-xs text-[var(--text-secondary)] mb-1 block">Tim A</label>
-                      <input
-                        type="number"
-                        min="0"
-                        max="7"
-                        value={scoreA}
-                        onChange={(e) => setScoreA(e.target.value)}
-                        className="w-full h-14 rounded-xl glass-card text-center text-2xl font-mono font-bold text-[var(--color-toxic)] border-0 focus:outline-none focus:ring-2 focus:ring-[var(--color-toxic)]"
-                        placeholder="0"
-                      />
-                    </div>
-                    <span className="text-2xl font-bold text-[var(--text-tertiary)] mt-5">-</span>
-                    <div className="flex-1">
-                      <label className="text-xs text-[var(--text-secondary)] mb-1 block">Tim B</label>
-                      <input
-                        type="number"
-                        min="0"
-                        max="7"
-                        value={scoreB}
-                        onChange={(e) => setScoreB(e.target.value)}
-                        className="w-full h-14 rounded-xl glass-card text-center text-2xl font-mono font-bold text-[var(--tier-mythic)] border-0 focus:outline-none focus:ring-2 focus:ring-[var(--tier-mythic)]"
-                        placeholder="0"
-                      />
-                    </div>
+
+                  {/* Header Row */}
+                  <div className="grid grid-cols-4 gap-2 mb-2">
+                    <div></div>
+                    <div className="text-center text-xs text-[var(--text-secondary)]">Set 1</div>
+                    <div className="text-center text-xs text-[var(--text-secondary)]">Set 2</div>
+                    <div className="text-center text-xs text-[var(--text-secondary)]">Set 3</div>
                   </div>
+
+                  {/* Team A Row */}
+                  <div className="grid grid-cols-4 gap-2 mb-2 items-center">
+                    <span className="text-sm font-medium text-[var(--color-toxic)]">Tim A</span>
+                    {[0, 1, 2].map((setIndex) => (
+                      <input
+                        key={`a-${setIndex}`}
+                        type="number"
+                        min="0"
+                        max="7"
+                        value={sets[setIndex].teamA}
+                        onChange={(e) => updateSet(setIndex, "teamA", e.target.value)}
+                        disabled={setIndex === 2 && !needsThirdSet()}
+                        className={cn(
+                          "h-12 rounded-xl glass-card text-center text-xl font-mono font-bold",
+                          "text-[var(--color-toxic)] focus:ring-2 focus:ring-[var(--color-toxic)] border-0 focus:outline-none",
+                          setIndex === 2 && !needsThirdSet() && "opacity-30 cursor-not-allowed"
+                        )}
+                        placeholder="0"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Team B Row */}
+                  <div className="grid grid-cols-4 gap-2 items-center">
+                    <span className="text-sm font-medium text-[var(--tier-mythic)]">Tim B</span>
+                    {[0, 1, 2].map((setIndex) => (
+                      <input
+                        key={`b-${setIndex}`}
+                        type="number"
+                        min="0"
+                        max="7"
+                        value={sets[setIndex].teamB}
+                        onChange={(e) => updateSet(setIndex, "teamB", e.target.value)}
+                        disabled={setIndex === 2 && !needsThirdSet()}
+                        className={cn(
+                          "h-12 rounded-xl glass-card text-center text-xl font-mono font-bold",
+                          "text-[var(--tier-mythic)] focus:ring-2 focus:ring-[var(--tier-mythic)] border-0 focus:outline-none",
+                          setIndex === 2 && !needsThirdSet() && "opacity-30 cursor-not-allowed"
+                        )}
+                        placeholder="0"
+                      />
+                    ))}
+                  </div>
+
+                  {/* Match Result */}
+                  {matchResult && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-4 text-center"
+                    >
+                      <div className={cn(
+                        "inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium",
+                        matchResult.winner === "A"
+                          ? "bg-[var(--color-toxic)]/20 text-[var(--color-toxic)]"
+                          : "bg-[var(--tier-mythic)]/20 text-[var(--tier-mythic)]"
+                      )}>
+                        <Trophy size={16} />
+                        Tim {matchResult.winner} Menang ({matchResult.score})
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Info Badge */}
@@ -323,8 +408,8 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
                     <Zap size={20} className="text-blue-400" />
                   </div>
                   <p className="text-sm text-[var(--text-secondary)]">
-                    Skor sparring hanya update <span className="text-white font-medium">Individual MMR</span>.
-                    Untuk match liga, gunakan menu di tab League.
+                    Ranked match updates <span className="text-white font-medium">Individual MMR only</span>.
+                    For league matches, use the Record button → League Match.
                   </p>
                 </div>
 
@@ -333,11 +418,11 @@ export function SparringFormModal({ isOpen, onClose }: SparringFormModalProps) {
                   fullWidth
                   size="lg"
                   isLoading={isSubmitting}
-                  loadingText="Menyimpan..."
+                  loadingText="Saving..."
                   onClick={handleSubmit}
                   disabled={!isFormValid}
                 >
-                  Simpan Skor Sparring
+                  Submit Ranked Match
                 </RippleButton>
               </div>
             )}
