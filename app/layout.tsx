@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next"
-import { Inter, Space_Mono } from "next/font/google"
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { ToastProvider } from "@/components/providers/ToastProvider"
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary"
 import "./globals.css"
 
-const inter = Inter({
-  variable: "--font-inter",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
 })
 
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 })
 
 export const metadata: Metadata = {
@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="dark">
-      <body className={`${inter.variable} ${spaceMono.variable} font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ErrorBoundary>
           <ToastProvider>
             {children}

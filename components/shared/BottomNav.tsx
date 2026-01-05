@@ -11,7 +11,7 @@ import { RecordActionSheet } from "@/components/play/RecordActionSheet"
 // New 5-Slot Dock: HOME | FIND GAMES | [RECORD] | LEAGUE | PROFILE
 const navItems = [
   { label: "Home", href: "/", icon: Home },
-  { label: "Find Games", href: "/connect", icon: Search },
+  { label: "Connect", href: "/connect", icon: Search },
   // RECORD is handled separately as center FAB
   { label: "League", href: "/league", icon: Trophy },
   { label: "Profile", href: "/profile", icon: User },
@@ -29,7 +29,7 @@ export function BottomNav() {
   return (
     <>
       <nav
-        className="fixed bottom-0 left-0 right-0 z-50 glass-elevated"
+        className="fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-main)]/90 backdrop-blur-xl border-t border-[var(--border-subtle)]"
         style={{ height: 'var(--bottom-nav-height)' }}
       >
         {/* Nav content */}
@@ -47,27 +47,20 @@ export function BottomNav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[48px] px-3 py-2 transition-all duration-200",
+                  "relative flex flex-col items-center justify-center gap-1.5 min-w-[64px] min-h-[48px] px-3 py-2 transition-all duration-200",
                   isActive ? "text-[var(--color-primary)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
                 )}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute -top-1 w-8 h-1 rounded-full bg-[var(--color-primary)]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                  />
-                )}
                 <div className="relative z-10">
                   <Icon
                     size={22}
-                    strokeWidth={isActive ? 2.5 : 1.8}
+                    strokeWidth={isActive ? 2 : 1.5}
                     className="transition-all duration-200"
                   />
                 </div>
                 <span className={cn(
-                  "text-[10px] transition-all duration-200",
-                  isActive ? "font-semibold" : "font-medium"
+                  "text-[10px] tracking-wide transition-all duration-200",
+                  isActive ? "font-semibold text-[var(--color-primary)]" : "font-medium"
                 )}>
                   {item.label}
                 </span>
@@ -76,35 +69,36 @@ export function BottomNav() {
           })}
 
           {/* Center RECORD FAB Button */}
-          <div className="relative flex items-center justify-center min-w-[72px]">
+          <div className="relative flex items-center justify-center min-w-[80px]">
             <motion.button
               onClick={() => setIsPlayOpen(true)}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.92 }}
               className={cn(
-                "relative -mt-8 w-16 h-16 rounded-full",
+                "relative -mt-6 rounded-2xl",
                 "bg-[var(--color-primary)] text-black",
                 "flex items-center justify-center",
-                "shadow-[0_0_24px_rgba(204,255,0,0.5)]",
-                "transition-all duration-200"
+                "shadow-[var(--shadow-glow)]",
+                "transition-all duration-300"
               )}
               style={{ height: 'var(--btn-record)', width: 'var(--btn-record)' }}
             >
-              {/* Subtle ring animation */}
+              {/* Glow ring */}
               <motion.div
-                className="absolute inset-0 rounded-full bg-[var(--color-primary)]"
+                className="absolute inset-0 rounded-2xl"
+                style={{ background: 'var(--color-primary)' }}
                 animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0, 0.3],
+                  scale: [1, 1.12, 1],
+                  opacity: [0.4, 0, 0.4],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
               />
-              <Zap size={28} strokeWidth={2.5} className="relative z-10" />
+              <Zap size={28} strokeWidth={2} className="relative z-10" fill="currentColor" />
             </motion.button>
-            <span className="absolute -bottom-0.5 text-[10px] font-semibold text-[var(--color-primary)]">
+            <span className="absolute bottom-0 text-[10px] font-semibold text-[var(--color-primary)] tracking-wide">
               Record
             </span>
           </div>
@@ -119,27 +113,20 @@ export function BottomNav() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[48px] px-3 py-2 transition-all duration-200",
+                  "relative flex flex-col items-center justify-center gap-1.5 min-w-[64px] min-h-[48px] px-3 py-2 transition-all duration-200",
                   isActive ? "text-[var(--color-primary)]" : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
                 )}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute -top-1 w-8 h-1 rounded-full bg-[var(--color-primary)]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                  />
-                )}
                 <div className="relative z-10">
                   <Icon
                     size={22}
-                    strokeWidth={isActive ? 2.5 : 1.8}
+                    strokeWidth={isActive ? 2 : 1.5}
                     className="transition-all duration-200"
                   />
                 </div>
                 <span className={cn(
-                  "text-[10px] transition-all duration-200",
-                  isActive ? "font-semibold" : "font-medium"
+                  "text-[10px] tracking-wide transition-all duration-200",
+                  isActive ? "font-semibold text-[var(--color-primary)]" : "font-medium"
                 )}>
                   {item.label}
                 </span>

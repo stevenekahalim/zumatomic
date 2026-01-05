@@ -20,7 +20,7 @@ export function Header({
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 glass-elevated",
+        "sticky top-0 z-40 bg-[var(--bg-main)]/80 backdrop-blur-xl border-b border-[var(--border-subtle)]",
         className
       )}
     >
@@ -33,32 +33,32 @@ export function Header({
         }}
       >
         {showLogo ? (
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[var(--color-primary)] flex items-center justify-center shadow-[0_0_16px_rgba(204,255,0,0.4)]">
-              <span className="text-black font-bold text-sm">Z</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-9 h-9 rounded-lg bg-[var(--color-primary)] flex items-center justify-center shadow-[var(--shadow-glow)] transition-shadow group-hover:shadow-[var(--shadow-glow-intense)]">
+              <span className="text-black font-bold text-base">Z</span>
             </div>
-            <span className="font-bold text-[15px] tracking-tight text-[var(--text-primary)]">
+            <span className="font-semibold text-[15px] tracking-tight text-[var(--text-primary)]">
               ZUMATOMIC
             </span>
           </Link>
         ) : (
-          <h1 className="font-bold text-[17px] tracking-tight text-[var(--text-primary)]">{title}</h1>
+          <h1 className="font-semibold text-[17px] tracking-tight text-[var(--text-primary)]">{title}</h1>
         )}
 
         {showActions && (
           <div className="flex items-center gap-1">
             <button
-              className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[var(--bg-input)] active:bg-[var(--border-light)] transition-colors"
+              className="w-11 h-11 rounded-lg flex items-center justify-center hover:bg-[var(--bg-card)] active:bg-[var(--bg-elevated)] transition-all duration-150"
               aria-label="Notifications"
             >
-              <Bell size={20} className="text-[var(--text-secondary)]" />
+              <Bell size={20} strokeWidth={1.5} className="text-[var(--text-secondary)]" />
             </button>
             <Link
               href="/settings"
-              className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-[var(--bg-input)] active:bg-[var(--border-light)] transition-colors"
+              className="w-11 h-11 rounded-lg flex items-center justify-center hover:bg-[var(--bg-card)] active:bg-[var(--bg-elevated)] transition-all duration-150"
               aria-label="Settings"
             >
-              <Settings size={20} className="text-[var(--text-secondary)]" />
+              <Settings size={20} strokeWidth={1.5} className="text-[var(--text-secondary)]" />
             </Link>
           </div>
         )}
