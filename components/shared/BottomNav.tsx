@@ -81,12 +81,13 @@ export function BottomNav() {
               onClick={() => setIsPlayOpen(true)}
               whileTap={{ scale: 0.9 }}
               className={cn(
-                "relative -mt-8 w-14 h-14 rounded-full",
-                "bg-[var(--color-primary)] text-white",
+                "relative -mt-8 w-16 h-16 rounded-full",
+                "bg-[var(--color-primary)] text-black",
                 "flex items-center justify-center",
-                "shadow-lg",
+                "shadow-[0_0_24px_rgba(204,255,0,0.5)]",
                 "transition-all duration-200"
               )}
+              style={{ height: 'var(--btn-record)', width: 'var(--btn-record)' }}
             >
               {/* Subtle ring animation */}
               <motion.div
@@ -101,7 +102,7 @@ export function BottomNav() {
                   ease: "easeInOut",
                 }}
               />
-              <Zap size={26} strokeWidth={2.5} className="relative z-10" />
+              <Zap size={28} strokeWidth={2.5} className="relative z-10" />
             </motion.button>
             <span className="absolute -bottom-0.5 text-[10px] font-semibold text-[var(--color-primary)]">
               Record

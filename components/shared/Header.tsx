@@ -34,8 +34,8 @@ export function Header({
       >
         {showLogo ? (
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[var(--color-primary)] flex items-center justify-center">
-              <span className="text-white font-bold text-sm">Z</span>
+            <div className="w-8 h-8 rounded-lg bg-[var(--color-primary)] flex items-center justify-center shadow-[0_0_16px_rgba(204,255,0,0.4)]">
+              <span className="text-black font-bold text-sm">Z</span>
             </div>
             <span className="font-bold text-[15px] tracking-tight text-[var(--text-primary)]">
               ZUMATOMIC
